@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+    <head>
+	<title>Ethics</title>
+	<script src="jsPsych/js/jspsych.js"></script>
+	<script src="jsPsych/js/plugins/jspsych-html-keyboard-response.js"></script>
+	<script src="jsPsych/js/plugins/jspsych-iat-html.js"></script>
+	<script src="jsPsych/js/plugins/jspsych-survey-text.js"></script>
+	<script src="jsPsych/js/plugins/jspsych-call-function.js"></script>
+	<script src="jsPsych/js/plugins/jspsych-instructions.js"></script>
+	<script src="jsPsych/js/plugins/jspsych-keen-ping.js"></script>
+
+	<script src="js/keenio-credentials.js"></script>
+	<link href="css/jspsych.css" rel="stylesheet" type="text/css"></link>	
+	</head>
+	
+	
+	<script>
+	var inductive_text = {
+		type: 'instructions',
+		pages: [
+			'<b>ETHICS AND INFORMATION </b><br></br>'
+			+ '<b>Title of Project:</b> Example <br></br>'
+			+ '<br></br> You are being asked to help with some research. Please read this information before beginning. <br></br>'
+			
+		],
+		show_clickable_nav: true
+	};
+	
+	var person = prompt("Please enter your student number. Do not include the s", "");
+	
+	if (person == "") {
+		var person = Math.floor(Math.random() * 1000) + 1
+		}
+	if (person == null) {
+		var person = Math.floor(Math.random() * 1000) + 1
+		}
+		
+	var timeline = [];
+	timeline.push(inductive_text);
+	
+	
+		var redirecter = "http://localhost:5500/AffSnack1.html?subject="+person
+
+	
+	
+	jsPsych.init({
+		timeline: timeline,
+		on_finish: function() {
+			window.location.replace(redirecter);
+		}
+	});
+	
+    </script>
+</html>
+
