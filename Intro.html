@@ -39,9 +39,14 @@
 	var timeline = [];
 	timeline.push(inductive_text);
 	
+	var rand = Math.floor(Math.random() * 2) + 1
 	
-		var redirecter = "http://localhost:5500/AffSnack1.html?subject="+person
-
+	if (rand == 1) {
+		var redirecter = "http://YOURSERVER.com/AffSnack1.html?subject="+person
+		} else {
+		var redirecter = "http://YOURSERVER.com/InsSnack1.html?subject="+person
+		}
+	
 	
 	
 	jsPsych.init({

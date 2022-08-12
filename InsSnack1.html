@@ -137,30 +137,30 @@
 	
 	var images_and_words2 =
 	[	
-		{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Delicious</p>', is_html:true, key_answer: 69}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Appealing</p>', is_html:true, key_answer: 69}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Pleasant</p>', is_html:true, key_answer: 69}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Appetizing</p>', is_html:true, key_answer: 69}
+		{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Good</p>', is_html:true, key_answer: 69}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Wise</p>', is_html:true, key_answer: 69}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Beneficial</p>', is_html:true, key_answer: 69}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Valueable</p>', is_html:true, key_answer: 69}
 	];
 	var im2 = jsPsych.randomization.sample(images_and_words2,7,true);
 	
 	var images_and_words3 =
 	[
-		{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Disgusting</p>', is_html:true, key_answer: 80}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Revolting</p>', is_html:true, key_answer: 80}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Nasty</p>', is_html:true, key_answer: 80}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Bland</p>', is_html:true, key_answer: 80}
+		{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Bad</p>', is_html:true, key_answer: 80}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Foolish</p>', is_html:true, key_answer: 80}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Harmful</p>', is_html:true, key_answer: 80}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Worthless</p>', is_html:true, key_answer: 80}
 	];
 	var im3 = jsPsych.randomization.sample(images_and_words3,10,true);
 		
 	/* block 3 and 4 images and/or words change */
 	var images_and_words4 =
 	[
-		{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Chocolate</p>', is_html:true, key_answer: 80}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Biscuits</p>', is_html:true, key_answer: 80}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Cake</p>', is_html:true, key_answer: 80}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Snacks</p>', is_html:true, key_answer: 80}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Chips</p>', is_html:true, key_answer: 80}
+		{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Chocolate</p>', is_html:true, key_answer: 69}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Biscuits</p>', is_html:true, key_answer: 69}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Cake</p>', is_html:true, key_answer: 69}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Snacks</p>', is_html:true, key_answer: 69}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Chips</p>', is_html:true, key_answer: 69}
 	];
 	
 	var im4 = jsPsych.randomization.sample(images_and_words4,7,true);
@@ -172,6 +172,7 @@
 	/* practice trial stimuli randomization */
 	var block0 = im2.concat(im3)
 	var block0_stimuli = jsPsych.randomization.repeat(block0,1)
+
 	
 	var block1and2 = im1.concat(im2,im3);
 	var practice_trial_stimuli = jsPsych.randomization.repeat(block1and2,1);
@@ -206,6 +207,7 @@
 	
 	};
 		
+
 	
 	var practice_trial =
 	{
@@ -305,6 +307,7 @@
 	timeline.push(instructions2);
 	timeline.push(rev_full_trial);
 	
+	
 	/* write to server */
 	function saveData(filename, filedata)
 	{
@@ -322,7 +325,7 @@
 	type: 'call-function'
 	,func: function()
 		{
-			saveData("AffectiveSnackIAT1_"+urlvar.subject+".csv", jsPsych.data.dataAsCSV())
+			saveData("InstrumentalSnackIAT1_"+urlvar.subject+".csv", jsPsych.data.dataAsCSV())
 		}
 	,timing_post_trial: 0
 	}
@@ -345,7 +348,7 @@
 		,timeline: timeline
 		,on_finish: function()
 		{
-			window.location.replace("YOURSERVER.com/InsSnack2.html?subject="+urlvar.subject);
+			window.location.replace("http://YOURSERVER.com/AffSnack2.html?subject="+urlvar.subject);
 		}
 	});
 	}

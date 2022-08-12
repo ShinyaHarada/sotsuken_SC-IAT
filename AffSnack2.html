@@ -100,8 +100,7 @@
 		,cont_key: ['space']
 		
 	};
-	
-	/* define rev_instructions block */
+		/* define rev_instructions block */
 	var rev_instructions = 
 	{
         type: "text"
@@ -172,7 +171,7 @@
 	/* practice trial stimuli randomization */
 	var block0 = im2.concat(im3)
 	var block0_stimuli = jsPsych.randomization.repeat(block0,1)
-	
+		
 	var block1and2 = im1.concat(im2,im3);
 	var practice_trial_stimuli = jsPsych.randomization.repeat(block1and2,1);
 	
@@ -272,7 +271,8 @@
 	{
 		type: "text"
 		,data:{trial_name: 'debrief'}
-        ,text:'<p class = "instructions">Please press the space-bar key to move onto the second word association task </p>'
+        ,text:'<p class = "instructions">You will now be redirected to a survey.'
+		+'<br><br/> Press the space bar to close this window</p>'
 		,on_trial_start: function()
 			{
 				$('div.left-side').empty();
@@ -322,7 +322,7 @@
 	type: 'call-function'
 	,func: function()
 		{
-			saveData("AffectiveSnackIAT1_"+urlvar.subject+".csv", jsPsych.data.dataAsCSV())
+			saveData("AffectiveSnackIAT2_"+urlvar.subject+".csv", jsPsych.data.dataAsCSV())
 		}
 	,timing_post_trial: 0
 	}
@@ -345,7 +345,7 @@
 		,timeline: timeline
 		,on_finish: function()
 		{
-			window.location.replace("YOURSERVER.com/InsSnack2.html?subject="+urlvar.subject);
+			window.location.replace("https://www.google.com/search?q="+urlvar.subject);
 		}
 	});
 	}
