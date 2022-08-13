@@ -52,20 +52,7 @@
 	
 	
 	/* define instructions block */
-    var instructions0 = 
-	{
-        type: "text"
-		,data:{trial_name: 'instructions0'}
-        ,text: '<p class ="left-side-begin">Positive</p>'
-				+'<p class ="right-side-begin">Negative</p>'
-				+ '<p class="instructions"><br></br>Words representing the categories at the top will appear one-by-one in the middle of the screen.'
-				+ '<br></br>When the item belongs to a category on the left, press the E key'
-				+ '<br></br>When the item belongs to a category on the right, press the P key.'
-				+ '<br></br>Items belong to only one category. If you make an error, an X will appear.'
-				+'<br></br>Press the space bar to continue.</p>'
-		,timing_post_trial: 2000
-		,cont_key: ['space']
-	};
+    
     var instructions = 
 	{
         type: "text"
@@ -170,9 +157,6 @@
 	/* =============RANDOMIZATION OF STIMULI IN BLOCKS================== */
 	
 	/* practice trial stimuli randomization */
-	var block0 = im2.concat(im3)
-	var block0_stimuli = jsPsych.randomization.repeat(block0,1)
-	var block0_stimuli = jsPsych.randomization.repeat(im1,1)
 	
 	var block1and2 = im1.concat(im2,im3);
 	var practice_trial_stimuli = jsPsych.randomization.repeat(block1and2,1);
@@ -196,20 +180,6 @@
 	/* =================DEFINE BLOCKS================= */
 	
 	/* define practice trial block */
-	var familiarity_trial =
-	{
-		type: 'IAT'
-		,choices: ['E','P']
-		,data:{trial_name: 'familiarity'}
-		,timing_post_trial: post_trial_gap
-		,timing_feedback_duration: 150
-		,force_correct_button_press: false
-		,timing_response: 1500
-		,timeline: block0_stimuli
-		,left_target: '<p>Positive</p>'
-		,right_target: '<p>Negative</p>'
-	
-	};
 		
 	
 	var practice_trial =
@@ -299,8 +269,8 @@
 	/* create experiment timeline array */
 	var timeline = [];
 	timeline.push(intro)
-	timeline.push(instructions0);
-	timeline.push(familiarity_trial);
+	//timeline.push(instructions0);
+	//timeline.push(familiarity_trial);
 	timeline.push(instructions);
 	timeline.push(practice_trial);
 	timeline.push(instructions2);
