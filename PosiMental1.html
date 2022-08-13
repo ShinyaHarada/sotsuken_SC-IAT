@@ -172,20 +172,25 @@
 	/* practice trial stimuli randomization */
 	var block0 = im2.concat(im3)
 	var block0_stimuli = jsPsych.randomization.repeat(block0,1)
+	var block0_stimuli = jsPsych.randomization.repeat(im1,1)
 	
 	var block1and2 = im1.concat(im2,im3);
 	var practice_trial_stimuli = jsPsych.randomization.repeat(block1and2,1);
+	var practice_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
 	
 	/* full trial stimuli randomization */
 
 	var full_trial_stimuli = jsPsych.randomization.repeat(block1and2,3);
+	var full_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
 
 	/* reverse practice trial stimuli randomization */
 	var block3and4 = im4.concat(im5,im6);
 	var rev_practice_trial_stimuli = jsPsych.randomization.repeat(block3and4,1);
+	var rev_practice_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
 	
 	/* reverse full trial stimuli randomization */
 	var rev_full_trial_stimuli = jsPsych.randomization.repeat(block3and4,3);
+	var rev_full_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
 	 
 	
 	/* =================DEFINE BLOCKS================= */
