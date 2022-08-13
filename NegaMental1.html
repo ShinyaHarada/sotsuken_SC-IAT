@@ -42,7 +42,7 @@
 				+'<br></br>GO AS FAST AS YOU CAN while making as few mistakes as possible. '
 				+'Press the E or P key to begin.</p>'
 		
-		,cont_key: ['e','p']
+		,cont_key: ['f','j']
 		,on_trial_start: function()
 			{
 				$('div.left-side').empty();
@@ -114,40 +114,40 @@
 	/* block 1 and 2 images and/or words */
 	var images_and_words1 =
 	[
-		{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Chocolate</p>', is_html:true, key_answer: 69}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Biscuits</p>', is_html:true, key_answer: 69}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Cake</p>', is_html:true, key_answer: 69}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Snacks</p>', is_html:true, key_answer: 69}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Chips</p>', is_html:true, key_answer: 69}
+		{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Chocolate</p>', is_html:true, key_answer: 70}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Biscuits</p>', is_html:true, key_answer: 70}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Cake</p>', is_html:true, key_answer: 70}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Snacks</p>', is_html:true, key_answer: 70}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Chips</p>', is_html:true, key_answer: 70}
 	];
 	var im1 = jsPsych.randomization.sample(images_and_words1,7,true);
 	
 	var images_and_words2 =
 	[	
-		{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Delicious</p>', is_html:true, key_answer: 69}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Appealing</p>', is_html:true, key_answer: 69}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Pleasant</p>', is_html:true, key_answer: 69}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Appetizing</p>', is_html:true, key_answer: 69}
+		{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Delicious</p>', is_html:true, key_answer: 70}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Appealing</p>', is_html:true, key_answer: 70}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Pleasant</p>', is_html:true, key_answer: 70}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Appetizing</p>', is_html:true, key_answer: 70}
 	];
 	var im2 = jsPsych.randomization.sample(images_and_words2,7,true);
 	
 	var images_and_words3 =
 	[
-		{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Disgusting</p>', is_html:true, key_answer: 80}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Revolting</p>', is_html:true, key_answer: 80}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Nasty</p>', is_html:true, key_answer: 80}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Bland</p>', is_html:true, key_answer: 80}
+		{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Disgusting</p>', is_html:true, key_answer: 74}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Revolting</p>', is_html:true, key_answer: 74}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Nasty</p>', is_html:true, key_answer: 74}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Bland</p>', is_html:true, key_answer: 74}
 	];
 	var im3 = jsPsych.randomization.sample(images_and_words3,10,true);
 		
 	/* block 3 and 4 images and/or words change */
 	var images_and_words4 =
 	[
-		{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Chocolate</p>', is_html:true, key_answer: 80}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Biscuits</p>', is_html:true, key_answer: 80}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Cake</p>', is_html:true, key_answer: 80}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Snacks</p>', is_html:true, key_answer: 80}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Chips</p>', is_html:true, key_answer: 80}
+		{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Chocolate</p>', is_html:true, key_answer: 74}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Biscuits</p>', is_html:true, key_answer: 74}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Cake</p>', is_html:true, key_answer: 74}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Snacks</p>', is_html:true, key_answer: 74}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Chips</p>', is_html:true, key_answer: 74}
 	];
 	
 	var im4 = jsPsych.randomization.sample(images_and_words4,7,true);
@@ -185,7 +185,7 @@
 	var practice_trial =
 	{
 		type: 'IAT'
-		,choices: ['E','P']
+		,choices: ['F','J']
 		,data:{trial_name: 'practice'}
 		,timing_post_trial: post_trial_gap
 		,timing_feedback_duration: 150
@@ -201,7 +201,7 @@
 	var full_trial =
 	{
 		type: 'IAT'
-		,choices: ['E','P']
+		,choices: ['F','J']
 		,data:{trial_name: 'full_trial'}
 		,timing_post_trial: post_trial_gap
 		,timing_feedback_duration: 150
@@ -216,7 +216,7 @@
 	var rev_practice_trial =
 	{
 		type: 'IAT'
-		,choices: ['E','P']
+		,choices: ['F','J']
 		,data:{trial_name: 'reverse_practice'}
 		,timing_post_trial: post_trial_gap
 		,timing_feedback_duration: 150
@@ -231,7 +231,7 @@
 	var rev_full_trial =
 	{
 		type: 'IAT'
-		,choices: ['E','P']
+		,choices: ['F','J']
 		,data:{trial_name: 'rev_full_trial'}
 		,timing_post_trial: post_trial_gap
 		,timing_feedback_duration: 150
@@ -271,7 +271,6 @@
 	timeline.push(intro)
 	//timeline.push(instructions0);
 	//timeline.push(familiarity_trial);
-
 	timeline.push(rev_instructions);
 	timeline.push(rev_practice_trial);
 	timeline.push(instructions2);
