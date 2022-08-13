@@ -114,41 +114,40 @@
 	/* block 1 and 2 images and/or words */
 	var images_and_words1 =
 	[
-		{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Chocolate</p>', is_html:true, key_answer: 70}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Biscuits</p>', is_html:true, key_answer: 70}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Cake</p>', is_html:true, key_answer: 70}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Snacks</p>', is_html:true, key_answer: 70}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Chips</p>', is_html:true, key_answer: 70}
+		{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">うつ病</p>', is_html:true, key_answer: 70}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">恐怖症</p>', is_html:true, key_answer: 70}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">拒食症</p>', is_html:true, key_answer: 70}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">依存症</p>', is_html:true, key_answer: 70}
 	];
 	var im1 = jsPsych.randomization.sample(images_and_words1,7,true);
 	
 	var images_and_words2 =
 	[	
-		{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Delicious</p>', is_html:true, key_answer: 70}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Appealing</p>', is_html:true, key_answer: 70}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Pleasant</p>', is_html:true, key_answer: 70}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Appetizing</p>', is_html:true, key_answer: 70}
+		{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">努力</p>', is_html:true, key_answer: 70}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">支援</p>', is_html:true, key_answer: 70}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">健康</p>', is_html:true, key_answer: 70}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">復帰</p>', is_html:true, key_answer: 70}
 	];
 	var im2 = jsPsych.randomization.sample(images_and_words2,7,true);
 	
 	var images_and_words3 =
 	[
-		{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Disgusting</p>', is_html:true, key_answer: 74}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Revolting</p>', is_html:true, key_answer: 74}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Nasty</p>', is_html:true, key_answer: 74}
-		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">Bland</p>', is_html:true, key_answer: 74}
+		{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">困難</p>', is_html:true, key_answer: 74}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">絶望</p>', is_html:true, key_answer: 74}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">差別</p>', is_html:true, key_answer: 74}
+		,{stimulus: '<p class="IAT-stimuli"; style="color: green; font-size: 35px">心配</p>', is_html:true, key_answer: 74}
 	];
 	var im3 = jsPsych.randomization.sample(images_and_words3,10,true);
 		
 	/* block 3 and 4 images and/or words change */
 	var images_and_words4 =
 	[
-		{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Chocolate</p>', is_html:true, key_answer: 74}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Biscuits</p>', is_html:true, key_answer: 74}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Cake</p>', is_html:true, key_answer: 74}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Snacks</p>', is_html:true, key_answer: 74}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">Chips</p>', is_html:true, key_answer: 74}
+		{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">うつ病</p>', is_html:true, key_answer: 74}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">恐怖症</p>', is_html:true, key_answer: 74}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">拒食症</p>', is_html:true, key_answer: 74}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">依存症</p>', is_html:true, key_answer: 74}
 	];
+	
 	
 	var im4 = jsPsych.randomization.sample(images_and_words4,7,true);
 	var im5 = jsPsych.randomization.sample(images_and_words2,10,true);
@@ -160,21 +159,21 @@
 	
 	var block1and2 = im1.concat(im2,im3);
 	var practice_trial_stimuli = jsPsych.randomization.repeat(block1and2,1);
-	var practice_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
+	//var practice_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
 	
 	/* full trial stimuli randomization */
 
 	var full_trial_stimuli = jsPsych.randomization.repeat(block1and2,3);
-	var full_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
+	//var full_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
 
 	/* reverse practice trial stimuli randomization */
 	var block3and4 = im4.concat(im5,im6);
 	var rev_practice_trial_stimuli = jsPsych.randomization.repeat(block3and4,1);
-	var rev_practice_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
+	//var rev_practice_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
 	
 	/* reverse full trial stimuli randomization */
 	var rev_full_trial_stimuli = jsPsych.randomization.repeat(block3and4,3);
-	var rev_full_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
+	//var rev_full_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
 	 
 	
 	/* =================DEFINE BLOCKS================= */
