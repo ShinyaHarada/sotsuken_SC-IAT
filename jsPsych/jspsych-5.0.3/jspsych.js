@@ -506,7 +506,7 @@ var jsPsych = (function() {
       if (keyboardNotAllowed) {
         go();
       } else {
-        DOM_target.append('<div style=""><p>下のボタンをクリックすると、実験の説明と実施方法が表示されます。</p><button id="jspsych-fullscreen-btn" class="jspsych-btn">表示される文章を読む</button></div>');
+        DOM_target.append('<div style=""><p>下のボタンをクリックすると、今回のタスクの説明と実施方法が表示されます。</p><button id="jspsych-fullscreen-btn" class="jspsych-btn">表示される文章を読む</button></div>');
         $('#jspsych-fullscreen-btn').on('click', function() {
           var element = document.documentElement;
           if (element.requestFullscreen) {
