@@ -156,21 +156,21 @@
 	
 	var block1and2 = im1.concat(im2,im3);
 	var practice_trial_stimuli = jsPsych.randomization.repeat(block1and2,1);
-	//var practice_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
+	var practice_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
 	
 	/* full trial stimuli randomization */
 
 	var full_trial_stimuli = jsPsych.randomization.repeat(block1and2,3);
-	//var full_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
+	var full_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
 
 	/* reverse practice trial stimuli randomization */
 	var block3and4 = im4.concat(im5,im6);
 	var rev_practice_trial_stimuli = jsPsych.randomization.repeat(block3and4,1);
-	//var rev_practice_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
+	var rev_practice_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
 	
 	/* reverse full trial stimuli randomization */
 	var rev_full_trial_stimuli = jsPsych.randomization.repeat(block3and4,3);
-	//var rev_full_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
+	var rev_full_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
 	 
 	
 	/* =================DEFINE BLOCKS================= */
@@ -243,7 +243,7 @@
 	{
 		type: "text"
 		,data:{trial_name: 'debrief'}
-        ,text:'<p class = "instructions">スペースバーを押して終わり</p>'
+        ,text:'<p class = "instructions">お疲れ様でした。スペースバーを押して次のタスクに取り組んでください。</p>'
 		,on_trial_start: function()
 			{
 				$('div.left-side').empty();
@@ -265,8 +265,7 @@
 	/* create experiment timeline array */
 	var timeline = [];
 	timeline.push(intro)
-	//timeline.push(instructions0);
-	//timeline.push(familiarity_trial);
+
 	timeline.push(rev_instructions);
 	timeline.push(rev_practice_trial);
 	timeline.push(instructions2);
