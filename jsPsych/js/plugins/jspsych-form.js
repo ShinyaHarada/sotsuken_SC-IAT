@@ -41,16 +41,14 @@ var schema = {
 
   */
 
-  jsPsych.plugins["form"] = (function() {
+jsPsych.plugins["form"] = (function () {
+  var plugin = {};
 
-    var plugin = {};
-
-    plugin.trial = function(display_element, trial) {
-
+  plugin.trial = function (display_element, trial) {
     // set default values for parameters
     trial.schema = trial.schema || {};
     trial.schema.onSubmit = trial.schema.onSubmit || {
-      label: "Submit"
+      label: "Submit",
     };
 
     var tags = createForm(display_element, trial.schema);
@@ -60,18 +58,16 @@ var schema = {
 
     var trial_data = {
       Form: form.form_title,
-      Form_Description: form.form_description
+      Form_Description: form.form_description,
     };
 
     function end_trial() {
-
       var customized_output = undefined;
       if (trial.schema.onSubmit.onclick != undefined)
         var customized_output = docReady(trial.schema.onSubmit.onclick);
 
-
       for (var i = 0; i < questions.length; i++) {
-        var question = questions[i]
+        var question = questions[i];
         var key = question.question || question.label || question.type;
 
         var type = question.type;
@@ -79,50 +75,47 @@ var schema = {
         switch (type) {
           // codes for select component
           case "select":
-
-          // check answer
-          if (question.correct == undefined)
-            value = document.getElementById(question.label_id).value;
-          else {
-            var tempVal = document.getElementById(question.label_id).value;
-            value = {
-              "Result": (question.correct == tempVal) ? "Correct" : "Wrong",
-              "Expected Answer": question.correct,
-              "Answer Received": tempVal
-            };
-          }
-          // check answer
-
-          // check required field
-          if (question.required != "") {
-            if (!value || value["Answer Received"] == "") {
-              focus(question.label_id);
-              return;
+            // check answer
+            if (question.correct == undefined)
+              value = document.getElementById(question.label_id).value;
+            else {
+              var tempVal = document.getElementById(question.label_id).value;
+              value = {
+                Result: question.correct == tempVal ? "Correct" : "Wrong",
+                "Expected Answer": question.correct,
+                "Answer Received": tempVal,
+              };
             }
-          }
-          // check required field
-          break;
+            // check answer
+
+            // check required field
+            if (question.required != "") {
+              if (!value || value["Answer Received"] == "") {
+                focus(question.label_id);
+                return;
+              }
+            }
+            // check required field
+            break;
 
           // codes for toggle type component
           case "checkbox":
           case "radio":
           case "switch":
-
-          var flag = false;
-          var checed;
-          var asExpected = true;
-          value = {
-            "Result": "Correct",
-            "Expected Answers": [],
-            "Answers Chosen": []
-          };
+            var flag = false;
+            var checed;
+            var asExpected = true;
+            value = {
+              Result: "Correct",
+              "Expected Answers": [],
+              "Answers Chosen": [],
+            };
 
             // check answer
             var expectedAnswers = Object.keys(question.correctAnswers);
             for (var j = 0; j < expectedAnswers.length; j++) {
               var k = expectedAnswers[j];
-              if (question.correctAnswers[k])
-                value["Expected Answers"].push(k)
+              if (question.correctAnswers[k]) value["Expected Answers"].push(k);
             }
             for (var j = 0; j < question.products.length; j++) {
               product = question.products[j];
@@ -131,10 +124,9 @@ var schema = {
                 flag = true;
                 value["Answers Chosen"].push(product.value);
               }
-              if (product.correct != checked)
-                asExpected = false;
+              if (product.correct != checked) asExpected = false;
             }
-            value["Result"] = (asExpected) ? "Correct" : "Wrong";
+            value["Result"] = asExpected ? "Correct" : "Wrong";
             // check answer
 
             // check required field
@@ -147,81 +139,85 @@ var schema = {
 
             break;
 
-            // codes for other type questions
-            default:
-
+          // codes for other type questions
+          default:
             // check answer
             if (question.correct == undefined)
               value = document.getElementById(question.id).value;
             else {
               // standardize the inputs to string
-              var tempVal = "{0}".format(document.getElementById(question.id).value);
+              var tempVal = "{0}".format(
+                document.getElementById(question.id).value
+              );
               var correct = "{0}".format(question.correct);
 
               value = {
-                "Result": (correct.trim() == tempVal.trim()) ? "Correct" : "Wrong",
+                Result: correct.trim() == tempVal.trim() ? "Correct" : "Wrong",
                 "Expected Answer": question.correct,
-                "Answer Received": document.getElementById(question.id).value
+                "Answer Received": document.getElementById(question.id).value,
               };
             }
             // check answer
 
             // check required field
-            if (question.required != "" && (!value || value["Answer Received"] == "")) {
+            if (
+              question.required != "" &&
+              (!value || value["Answer Received"] == "")
+            ) {
               focus(question.id);
               return;
             }
             break;
-          }
-          // check required field
-
-          trial_data[key] = value;
         }
+        // check required field
 
-        if (customized_output)
-          trial_data["#Customized Output#"] = customized_output;
-
-        display_element.innerHTML = '';
-        jsPsych.finishTrial(trial_data);
+        trial_data[key] = value;
       }
 
-      document.getElementById(button.id).onclick = function() {
-        end_trial();
-      }
+      if (customized_output)
+        trial_data["#Customized Output#"] = customized_output;
+
+      display_element.innerHTML = "";
+      jsPsych.finishTrial(trial_data);
+    }
+
+    document.getElementById(button.id).onclick = function () {
+      end_trial();
     };
+  };
 
   // Help functions
   if (!String.prototype.format) {
-    String.prototype.format = function() {
+    String.prototype.format = function () {
       var args = arguments;
-      return this.replace(/{(\d+)}/g, function(match, number) {
-        return typeof args[number] != 'undefined' ? args[number] : match;
+      return this.replace(/{(\d+)}/g, function (match, number) {
+        return typeof args[number] != "undefined" ? args[number] : match;
       });
     };
   }
 
   if (!String.prototype.startsWith) {
-    String.prototype.startsWith = function(prefix) {
+    String.prototype.startsWith = function (prefix) {
       return this.slice(0, prefix.length) === prefix;
     };
   }
 
   if (!String.prototype.endsWith) {
-    String.prototype.endsWith = function(suffix) {
+    String.prototype.endsWith = function (suffix) {
       return this.indexOf(suffix, this.length - suffix.length) !== -1;
     };
   }
 
   if (!String.prototype.capitalize) {
-    String.prototype.capitalize = function() {
+    String.prototype.capitalize = function () {
       return this.charAt(0).toUpperCase() + this.slice(1);
-    }
+    };
   }
 
   function inherit(proto) {
     function F() {}
     F.prototype = proto;
-    return new F;
+    return new F();
   }
 
   function focus(id) {
@@ -230,12 +226,12 @@ var schema = {
 
   function docReady(callback) {
     if (callback == undefined) return;
-    if (document.readyState === "complete" ||
-      document.readyState !== "loading" &&
-      !document.documentElement.doScroll)
+    if (
+      document.readyState === "complete" ||
+      (document.readyState !== "loading" && !document.documentElement.doScroll)
+    )
       return callback();
-    else
-      document.addEventListener("DOMContentLoaded", callback);
+    else document.addEventListener("DOMContentLoaded", callback);
   }
 
   // track unique ids for each element
@@ -274,82 +270,80 @@ var schema = {
     var questions = [];
 
     for (var i in Object.keys(schema)) {
-      i = Object.keys(schema)[i]
-      if (i == "form" || i == "onSubmit")
-        continue;
-      item = schema[i]
+      i = Object.keys(schema)[i];
+      if (i == "form" || i == "onSubmit") continue;
+      item = schema[i];
       item.question = item.question || i;
       var type = item.type;
       var question;
       switch (type) {
         // major uses
         case "short answer":
-        item.type = "text";
+          item.type = "text";
         case "text":
-        question = new InputText(form_id, item);
-        break;
+          question = new InputText(form_id, item);
+          break;
         case "long answer":
-        item.type = "textarea";
+          item.type = "textarea";
         case "textarea":
-        question = new Textarea(form_id, item);
-        break;
+          question = new Textarea(form_id, item);
+          break;
         case "dropdown":
-        question = new Dropdown(form_id, item);
-        break;
+          question = new Dropdown(form_id, item);
+          break;
         case "checkbox":
         case "switch":
         case "radio":
-        question = new ToggleGroup(form_id, item);
-        break;
+          question = new ToggleGroup(form_id, item);
+          break;
         case "range":
-        question = new Range(form_id, item);
-        break;
-          // minor features
-          case "date":
+          question = new Range(form_id, item);
+          break;
+        // minor features
+        case "date":
           question = new InputDate(form_id, item);
           break;
-          case "datetime":
+        case "datetime":
           question = new InputDatetime(form_id, item);
           break;
-          case "datetime-local":
+        case "datetime-local":
           question = new InputDatetimeLocal(form_id, item);
           break;
-          case "email":
+        case "email":
           question = new InputEmail(form_id, item);
           break;
-          case "file":
+        case "file":
           question = new UploadFile(form_id, item);
           break;
-          case "month":
+        case "month":
           question = new InputMonth(form_id, item);
           break;
-          case "password":
+        case "password":
           question = new InputPassword(form_id, item);
           break;
-          case "search":
+        case "search":
           question = new InputSearch(form_id, item);
           break;
-          case "telephone":
+        case "telephone":
           question = new InputTel(form_id, item);
           break;
-          case "time":
+        case "time":
           question = new InputTime(form_id, item);
           break;
-          case "url":
+        case "url":
           question = new InputUrl(form_id, item);
           break;
-          case "week":
+        case "week":
           question = new InputWeek(form_id, item);
           break;
-        }
-        questions.push(question);
       }
-
-      var button = new Button(form_id, schema.onSubmit);
-
-      return [form, questions, button];
+      questions.push(question);
     }
 
+    var button = new Button(form_id, schema.onSubmit);
+
+    return [form, questions, button];
+  }
 
   /*
   ############################################################
@@ -394,13 +388,21 @@ var schema = {
     this.boxShadow = item.boxShadow || 0;
 
     // this.ribbon_color = item.ribbon_color || '#3F51B5';
-    this.ribbon_color = item.ribbon_color || 'white-300';
-    this.ribbon_height = item.ribbon_height || '40vh';
-    this.ribbon_bg = (item.ribbon_bg) ? "background: url({0});".format(item.ribbon_bg) : "";
-    this.ribbon_bg_size = item.ribbon_bg_size || "background-size: contain cover;";
+    this.ribbon_color = item.ribbon_color || "white-300";
+    this.ribbon_height = item.ribbon_height || "40vh";
+    this.ribbon_bg = item.ribbon_bg
+      ? "background: url({0});".format(item.ribbon_bg)
+      : "";
+    this.ribbon_bg_size =
+      item.ribbon_bg_size || "background-size: contain cover;";
 
-    this.ribbon = '<div style="height: {0};-webkit-flex-shrink: 0;-ms-flex-negative: 0;flex-shrink: 0;background-color: {1};{2}{3}"></div>'.format(
-      this.ribbon_height, this.ribbon_color, this.ribbon_bg, this.ribbon_bg_size);
+    this.ribbon =
+      '<div style="height: {0};-webkit-flex-shrink: 0;-ms-flex-negative: 0;flex-shrink: 0;background-color: {1};{2}{3}"></div>'.format(
+        this.ribbon_height,
+        this.ribbon_color,
+        this.ribbon_bg,
+        this.ribbon_bg_size
+      );
 
     // this.content_bg_color = item.content_bg_color || "grey-100";
     this.content_bg_color = item.content_bg_color || "white-300";
@@ -415,12 +417,21 @@ var schema = {
     this.form_description_color = item.form_description_color || "grey-600";
 
     if (this.form_description)
-      this.form_description_html = '<p style="font-size: {0};padding-top: 20px;" class="mdl-layout-title mdl-color-text--{1}">{2}</p>'.format(this.form_description_size, this.form_description_color, this.form_description);
-    else
-      this.form_description_html = "";
+      this.form_description_html =
+        '<p style="font-size: {0};padding-top: 20px;" class="mdl-layout-title mdl-color-text--{1}">{2}</p>'.format(
+          this.form_description_size,
+          this.form_description_color,
+          this.form_description
+        );
+    else this.form_description_html = "";
 
-    this.form_title_html = '<label style="font-size: {0};padding-bottom: 30px; font-weight: bolder;" class="mdl-layout-title mdl-color-text--{1}">{2}<br>{3}</label>'.format(
-      this.form_title_size, this.form_title_color, this.form_title, this.form_description_html)
+    this.form_title_html =
+      '<label style="font-size: {0};padding-bottom: 30px; font-weight: bolder;" class="mdl-layout-title mdl-color-text--{1}">{2}<br>{3}</label>'.format(
+        this.form_title_size,
+        this.form_title_color,
+        this.form_title,
+        this.form_description_html
+      );
 
     // this.content = '<main class="mdl-layout__content" style="margin-top: -35vh;-webkit-flex-shrink: 0;-ms-flex-negative: 0;flex-shrink: 0;">\
     // <div class="mdl-grid" style="max-width: 1600px;width: calc(100% - 16px);margin: 0 auto;margin-top: 10vh;">\
@@ -433,7 +444,8 @@ var schema = {
     // jsPsych Forms</div></div></main>'.format(
     //   this.content_bg_color, this.context_text_color, this.id, this.form_title_html);
 
-    this.content = '<main class="mdl-layout__content" style="position: relative;margin-top: -35vh;-webkit-flex-shrink: 0;-ms-flex-negative: 0;flex-shrink: 0;">\
+    this.content =
+      '<main class="mdl-layout__content" style="position: relative;margin-top: -35vh;-webkit-flex-shrink: 0;-ms-flex-negative: 0;flex-shrink: 0;">\
     <div class="mdl-grid" style="max-width: 1600px;width: calc(100% - 16px);margin: 0 auto;margin-top: 10vh;">\
     <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>\
     <div class="mdl-color--{0} mdl-shadow--{4}dp mdl-cell mdl-cell--8-col" style="border-radius: 2px;padding: 80px 56px;margin-bottom: 80px;">\
@@ -441,17 +453,25 @@ var schema = {
     <div class="mdl-layout mdl-color-text--grey-600" style="text-align: center; font-size: 12px; margin-top: -60px">\
     </div><div class="mdl-layout mdl-color-text--grey-700" style="text-align: center; font-size: 19px; margin-top: -30px">\
     </div></div></main>'.format(
-      this.content_bg_color, this.context_text_color, this.id, this.form_title_html, this.boxShadow);
+        this.content_bg_color,
+        this.context_text_color,
+        this.id,
+        this.form_title_html,
+        this.boxShadow
+      );
 
-
-    this.html = '<form><div style="text-align: left;">{1}{2}</div></form>'.format(
-      this.layout_color, this.ribbon, this.content);
+    this.html =
+      '<form><div style="text-align: left;">{1}{2}</div></form>'.format(
+        this.layout_color,
+        this.ribbon,
+        this.content
+      );
 
     this.render();
   }
-  Form.prototype.render = function() {
+  Form.prototype.render = function () {
     this.display_element.innerHTML = this.html;
-  }
+  };
 
   /*
   ############################################################
@@ -502,50 +522,59 @@ var schema = {
 
     //default settings
     this.newline = item.newline || false;
-    this.disabled = (item.disabled) ? 'disabled="disabled"' : "";
+    this.disabled = item.disabled ? 'disabled="disabled"' : "";
     this.maxlength = item.maxlength || "";
-    this.readonly = (item.readonly) ? 'readonly="readonly"' : "";
-    this.required = (item.required) ? 'required="required"' : "";
-    this.autofocus = (item.autofocus) ? 'autofocus="autofocus"' : "";
+    this.readonly = item.readonly ? 'readonly="readonly"' : "";
+    this.required = item.required ? 'required="required"' : "";
+    this.autofocus = item.autofocus ? 'autofocus="autofocus"' : "";
     this.size = item.size || "";
 
     if (this.required != "") {
-      this.star = '<nobr class="mdl-color-text--red-800 style="font-weight: bold;" > *</nobr>';
-    } else
-    this.star = "";
+      this.star =
+        '<nobr class="mdl-color-text--red-800 style="font-weight: bold;" > *</nobr>';
+    } else this.star = "";
 
     // processing question_description
     this.question_description = item.question_description || "";
     this.question_description_size = item.question_description_size || "14px";
-    this.question_description_color = item.question_description_color || "grey-600";
+    this.question_description_color =
+      item.question_description_color || "grey-600";
     if (this.question_description)
-      this.question_description_html = '<p style="font-size: {0};padding-top: 20px;" class="mdl-layout-title mdl-color-text--{1}">{2}</p>'.format(
-        this.question_description_size, this.question_description_color, this.question_description
+      this.question_description_html =
+        '<p style="font-size: {0};padding-top: 20px;" class="mdl-layout-title mdl-color-text--{1}">{2}</p>'.format(
+          this.question_description_size,
+          this.question_description_color,
+          this.question_description
         );
-    else
-      this.question_description_html = "";
+    else this.question_description_html = "";
 
-    this.needQuestion = (item.needQuestion == false) ? false : true;
+    this.needQuestion = item.needQuestion == false ? false : true;
     if (this.needQuestion) {
       this.question = item.question || "Untitled Question";
-      this.question_html = '<label class="mdl-layout-title mdl-color-text--{0}" style="font-weight: bold;" >{1}{2}</label>'.format(
-        this.question_color, this.question, this.star
+      this.question_html =
+        '<label class="mdl-layout-title mdl-color-text--{0}" style="font-weight: bold;" >{1}{2}</label>'.format(
+          this.question_color,
+          this.question,
+          this.star
         );
     } else {
       this.question_html = "";
     }
 
-
     this.html = "";
   }
   Tag.prototype = {
-    render: function() {
-      if (this.newline)
-        this.html = "<br>" + this.html;
-      document.getElementById(this.parent_id).insertAdjacentHTML('beforeend', this.question_html + this.question_description_html + this.html);
+    render: function () {
+      if (this.newline) this.html = "<br>" + this.html;
+      document
+        .getElementById(this.parent_id)
+        .insertAdjacentHTML(
+          "beforeend",
+          this.question_html + this.question_description_html + this.html
+        );
       // $("#{0}".format(this.parent_id)).append(this.question_html + this.question_description_html + this.html);
-    }
-  }
+    },
+  };
 
   /*
   ############################################################
@@ -578,31 +607,31 @@ var schema = {
     Tag.call(this, parent_id, item);
 
     //MDL style
-    this.addon = ""
+    this.addon = "";
     this.buttonStyle = item.buttonStyle || "raise";
     switch (this.buttonStyle) {
       case "raise":
-      this.addon += " mdl-button--raised";
-      break;
+        this.addon += " mdl-button--raised";
+        break;
       case "fab":
-      this.addon += " mdl-button--fab";
-      break;
+        this.addon += " mdl-button--fab";
+        break;
       case "minifab":
-      this.addon += " mdl-button--mini-fab";
-      break;
+        this.addon += " mdl-button--mini-fab";
+        break;
       case "icon":
-      this.addon += " mdl-button--icon";
-      break;
+        this.addon += " mdl-button--icon";
+        break;
     }
 
-    this.color = (item.color == false) ? false : true;
-    this.addon += ((this.color) ? " mdl-button--colored" : "");
+    this.color = item.color == false ? false : true;
+    this.addon += this.color ? " mdl-button--colored" : "";
     this.primary = item.primary || false;
-    this.addon += ((this.primary) ? " mdl-button--primary" : "");
+    this.addon += this.primary ? " mdl-button--primary" : "";
     this.accent = item.accent || false;
-    this.addon += ((this.accent) ? " mdl-button--accent" : "");
-    this.ripple = (item.ripple == false) ? false : true;
-    this.addon += ((this.ripple) ? " mdl-js-ripple-effect" : "");
+    this.addon += this.accent ? " mdl-button--accent" : "";
+    this.ripple = item.ripple == false ? false : true;
+    this.addon += this.ripple ? " mdl-js-ripple-effect" : "";
 
     this.style = "mdl-button mdl-js-button" + this.addon;
 
@@ -610,13 +639,23 @@ var schema = {
     this.value = item.value || "";
     this.onclick = item.onclick || undefined;
 
-
     this.icon = item.icon || "";
     if (this.icon != "")
       this.icon = '<i class="material-icons">{0}</i>'.format(this.icon);
 
-    this.html = '<div><button class="{0}" id="{1}" type="{2}" value="{3}" {4} form="{5}" onclick="{6}" name="{9}">{7}{8}</button></div>'.format(
-      this.style, this.id, this.type, this.value, this.disabled, this.parent_id, this.onclick, this.icon, this.label, this.name);
+    this.html =
+      '<div><button class="{0}" id="{1}" type="{2}" value="{3}" {4} form="{5}" onclick="{6}" name="{9}">{7}{8}</button></div>'.format(
+        this.style,
+        this.id,
+        this.type,
+        this.value,
+        this.disabled,
+        this.parent_id,
+        this.onclick,
+        this.icon,
+        this.label,
+        this.name
+      );
 
     this.render();
   }
@@ -648,17 +687,17 @@ var schema = {
 
     this.label_id = "label_{0}".format(this.id);
     this.fileType = item.fileType || "Upload a file from here";
-    if (!this.needQuestion && this.star != "")
-      this.fileType += this.star;
+    if (!this.needQuestion && this.star != "") this.fileType += this.star;
     this.label = item.label || this.fileType;
     this.icon = item.icon || "cloud_upload";
-    this._style = 'style="position:absolute;top: 0;right: 0;width: 300px;height: 100%;z-index: 4;cursor: pointer;opacity: 0"';
+    this._style =
+      'style="position:absolute;top: 0;right: 0;width: 300px;height: 100%;z-index: 4;cursor: pointer;opacity: 0"';
 
     this.html = this._generate();
     this.render();
 
     var label_id = this.label_id;
-    document.getElementById(this.id).onchange = function() {
+    document.getElementById(this.id).onchange = function () {
       document.getElementById(label_id).value = this.files[0].name;
       document.getElementById(label_id).textContent = this.files[0].name;
     };
@@ -666,21 +705,29 @@ var schema = {
       $("#{0}".format(label_id)).val(this.files[0].name);
       $("#{0}".format(label_id)).text(this.files[0].name);
     });*/
-  };
+  }
   UploadFile.prototype = inherit(Tag.prototype);
-  UploadFile.prototype._generate = function() {
-    var html = '<div class="mdl-textfield mdl-js-textfield" style="box-sizing: border-box;">\
+  UploadFile.prototype._generate = function () {
+    var html =
+      '<div class="mdl-textfield mdl-js-textfield" style="box-sizing: border-box;">\
     <input id="{3}" class="mdl-textfield__input" readonly placeholder="{4}">\
     <label class="mdl-textfield__label" for="{3}"></label></div>\
     <div class="mdl-button mdl-js-button mdl-button--primary mdl-button--icon" style="right: 0;">\
     <i class="material-icons">{0}</i>\
     <input type="file" id="{1}" {2} {3} {4} {5} {6} style="padding-botton: 36px"></div>'.format(
-      this.icon, this.id, this._style, this.label_id, this.fileType,
-      this.required, this.readonly, this.disabled, this.autofocus
-      )
+        this.icon,
+        this.id,
+        this._style,
+        this.label_id,
+        this.fileType,
+        this.required,
+        this.readonly,
+        this.disabled,
+        this.autofocus
+      );
 
-    return html
-  }
+    return html;
+  };
 
   /*
   ############################################################
@@ -708,7 +755,7 @@ var schema = {
     item.type = "range";
     item.id = item.id || "{0}_{1}".format(item.type, __INPUT_RANGE++);
     item.value = item.value || "0";
-    item.needQuestion = (item.needQuestion == false) ? false : true;
+    item.needQuestion = item.needQuestion == false ? false : true;
     Tag.call(this, parent_id, item);
 
     this.label_id = "label_{0}".format(this.id);
@@ -717,26 +764,39 @@ var schema = {
     this.min = item.min || 0;
     this.step = item.step || 1;
     this.value_prompt = item.value_prompt || "value: ";
-    if (!this.needQuestion && this.star != "")
-      this.value_prompt += this.star;
-    this.value_label = '<label class="mdl-color-text--grey-700" id="{0}" readonly>{1}</label>'.format(
-      this.label_id, this.value
+    if (!this.needQuestion && this.star != "") this.value_prompt += this.star;
+    this.value_label =
+      '<label class="mdl-color-text--grey-700" id="{0}" readonly>{1}</label>'.format(
+        this.label_id,
+        this.value
       );
 
-    this.html = '<div class="mdl-textfield mdl-js-textfield" style="box-sizing: border-box;">{12} {6}\
+    this.html =
+      '<div class="mdl-textfield mdl-js-textfield" style="box-sizing: border-box;">{12} {6}\
     <div style="width:{0};"><input class="mdl-slider mdl-js-slider" type="range" form="{7}"\
     id="{1}" min="{2}" max="{3}" value="{4}" step="{5}" {8} {9} {10} {11}></div></div>'.format(
-      this.width, this.id, this.min, this.max, this.value,
-      this.step, this.value_label, this.parent_id, this.required,
-      this.readonly, this.autofocus, this.disabled, this.value_prompt
+        this.width,
+        this.id,
+        this.min,
+        this.max,
+        this.value,
+        this.step,
+        this.value_label,
+        this.parent_id,
+        this.required,
+        this.readonly,
+        this.autofocus,
+        this.disabled,
+        this.value_prompt
       );
 
     this.render();
 
     var label_id = this.label_id;
     var id = this.id;
-    document.getElementById(this.id).onchange = function() {
-      document.getElementById(label_id).textContent = document.getElementById(id).value;
+    document.getElementById(this.id).onchange = function () {
+      document.getElementById(label_id).textContent =
+        document.getElementById(id).value;
     };
     /*
     $("#" + this.id).change(function() {;
@@ -771,7 +831,7 @@ var schema = {
     item.type = "select";
     item.id = item.id || "{0}_{1}".format(item.type, __SELECT++);
     item.label = item.label || item.id;
-    item.needQuestion = (item.needQuestion == false) ? false : true;
+    item.needQuestion = item.needQuestion == false ? false : true;
     Tag.call(this, parent_id, item);
 
     this.options = item.options || ["option1", "option2", "option3"];
@@ -787,41 +847,56 @@ var schema = {
     this.button_id = "button_{0}".format(this.id);
     this.dropRight = item.dropRight || false;
     this.choose_prompt = item.choose_prompt || "Choose";
-    this._style = "mdl-menu mdl-js-menu mdl-js-ripple-effect" + ((this.dropRight) ? "mdl-menu--bottom-right" : "mdl-menu--bottom-left");
+    this._style =
+      "mdl-menu mdl-js-menu mdl-js-ripple-effect" +
+      (this.dropRight ? "mdl-menu--bottom-right" : "mdl-menu--bottom-left");
 
-    this.html = '<div class="mdl-textfield mdl-js-textfield">\
+    this.html =
+      '<div class="mdl-textfield mdl-js-textfield">\
     <input id="{4}" form="{8}" class="mdl-textfield__input" readonly {5} {6} value="{7}"><button id="{0}" form="{8}" style="right: 0;"\
     class="mdl-button mdl-js-button mdl-button--icon">\
     <i class="material-icons">expand_more</i></button>\
     <ul id="{1}" class="{2}" for="{0}" form="{8}">{3}</ui></div>'.format(
-      this.button_id, this.id, this._style, this._option_factory(),
-      this.label_id, this.required, this.disabled, this.value, this.parent_id
+        this.button_id,
+        this.id,
+        this._style,
+        this._option_factory(),
+        this.label_id,
+        this.required,
+        this.disabled,
+        this.value,
+        this.parent_id
       );
 
     this.render();
     var option_values = this.option_values;
     var label_id = this.label_id;
     for (let i in this.option_ids) {
-      document.getElementById(this.option_ids[i]).onclick = function() {
+      document.getElementById(this.option_ids[i]).onclick = function () {
         document.getElementById(label_id).value = option_values[i];
       };
       /*$("#"+this.option_ids[i]).click(function() {
      $("#"+label_id).val(option_values[i]);
    })*/
- }
-}
-Dropdown.prototype = inherit(Tag.prototype);
-Dropdown.prototype._option_factory = function() {
-  var html = '<li disabled class="mdl-menu__item mdl-menu__item--full-bleed-divider">{0}</li>'.format(this.choose_prompt);
-
-  for (var i in this.options) {
-    html += '<li id="{1}" value="{2}" class="mdl-menu__item">{0}</li>'.format(
-      this.options[i], this.option_ids[i], this.option_values[i]
-      );
+    }
   }
+  Dropdown.prototype = inherit(Tag.prototype);
+  Dropdown.prototype._option_factory = function () {
+    var html =
+      '<li disabled class="mdl-menu__item mdl-menu__item--full-bleed-divider">{0}</li>'.format(
+        this.choose_prompt
+      );
 
-  return html;
-}
+    for (var i in this.options) {
+      html += '<li id="{1}" value="{2}" class="mdl-menu__item">{0}</li>'.format(
+        this.options[i],
+        this.option_ids[i],
+        this.option_values[i]
+      );
+    }
+
+    return html;
+  };
 
   /*
   ############################################################
@@ -851,15 +926,18 @@ Dropdown.prototype._option_factory = function() {
   ############################################################
   */
   function InputTextField(parent_id, item) {
-    item.needQuestion = (item.needQuestion == false) ? false : true;
+    item.needQuestion = item.needQuestion == false ? false : true;
     Tag.call(this, parent_id, item);
 
     //MDL style
     this.expandable = item.expandable || false;
-    this.expandable = (this.expandable) ? " mdl-textfield--expandable" : "";
+    this.expandable = this.expandable ? " mdl-textfield--expandable" : "";
     this.floating = item.floating || false;
-    this.floating = (this.floating) ? " mdl-textfield--floating-label" : "";
-    this.style = "mdl-textfield mdl-js-textfield{0}{1}".format(this.expandable, this.floating);
+    this.floating = this.floating ? " mdl-textfield--floating-label" : "";
+    this.style = "mdl-textfield mdl-js-textfield{0}{1}".format(
+      this.expandable,
+      this.floating
+    );
 
     this.icon = item.icon || "";
     this.pattern = item.pattern || ".*";
@@ -871,25 +949,42 @@ Dropdown.prototype._option_factory = function() {
     this.alt = item.alt || "";
     this.tabIndex = item.tabIndex || "";
 
-    if (!this.needQuestion && this.star != "")
-      this.label += this.star;
+    if (!this.needQuestion && this.star != "") this.label += this.star;
   }
   InputTextField.prototype = inherit(Tag.prototype);
-  InputTextField.prototype._generate = function() {
-    var component = '<input class="mdl-textfield__input" type="{0}" id="{1}" maxlength="{2}" size="{3}"\
+  InputTextField.prototype._generate = function () {
+    var component =
+      '<input class="mdl-textfield__input" type="{0}" id="{1}" maxlength="{2}" size="{3}"\
     {4} {5} pattern="{6}" {7} {8} {9} {10} {11} {12} value="{13}" form="{14}" placeholder="{15}"">'.format(
-      this.type, this.id, this.maxlength, this.size,
-      this.required, this.readonly, this.pattern,
-      this.disabled, this.autofocus, this.accessKey,
-      this.alt, this.defaultValue, this.tabIndex,
-      this.value, this.parent_id, this.label) +
-    '<span class="mdl-textfield__error">{0}</span>'.format(this.errorInfo);
+        this.type,
+        this.id,
+        this.maxlength,
+        this.size,
+        this.required,
+        this.readonly,
+        this.pattern,
+        this.disabled,
+        this.autofocus,
+        this.accessKey,
+        this.alt,
+        this.defaultValue,
+        this.tabIndex,
+        this.value,
+        this.parent_id,
+        this.label
+      ) +
+      '<span class="mdl-textfield__error">{0}</span>'.format(this.errorInfo);
 
     if (this.expandable != "")
-      component = '<div class="mdl-textfield__expandable-holder">' + component + '</div>';
+      component =
+        '<div class="mdl-textfield__expandable-holder">' + component + "</div>";
 
     if (this.icon != "")
-      component = '<label class="mdl-button mdl-js-button mdl-button--icon" for="{0}"><i class="material-icons">{1}</i></label>'.format(this.id, this.icon) + component;
+      component =
+        '<label class="mdl-button mdl-js-button mdl-button--icon" for="{0}"><i class="material-icons">{1}</i></label>'.format(
+          this.id,
+          this.icon
+        ) + component;
 
     return '<div class="{0}">{1}<div>'.format(this.style, component);
   };
@@ -935,7 +1030,6 @@ Dropdown.prototype._option_factory = function() {
   }
   InputEmail.prototype = inherit(InputTextField.prototype);
 
-
   function InputMonth(parent_id, item = {}) {
     item.type = "month";
     item.id = item.id || "{0}_{1}".format(item.type, __INPUT_MONTH++);
@@ -961,7 +1055,7 @@ Dropdown.prototype._option_factory = function() {
     item.type = "password";
     item.id = item.id || "{0}_{1}".format(item.type, __INPUT_PASSWORD++);
     item.needQuestion = item.needQuestion || false;
-    item.floating = (item.floating == false) ? false : true;
+    item.floating = item.floating == false ? false : true;
     item.label = item.label || "Please enter your password...";
     InputTextField.call(this, parent_id, item);
 
@@ -973,8 +1067,8 @@ Dropdown.prototype._option_factory = function() {
   function InputSearch(parent_id, item = {}) {
     item.type = "search";
     item.id = item.id || "{0}_{1}".format(item.type, __INPUT_SEARCH++);
-    item.expandable = (item.expandable == false) ? false : true;
-    item.floating = (item.expandable) ? false : true;
+    item.expandable = item.expandable == false ? false : true;
+    item.floating = item.expandable ? false : true;
     item.icon = item.icon || "search";
     item.needQuestion = false;
     InputTextField.call(this, parent_id, item);
@@ -1068,22 +1162,34 @@ Dropdown.prototype._option_factory = function() {
 
     this.name = item.name || this.id;
     this.placeholder = item.placeholder || "Text lines";
-    if (!this.needQuestion && this.star != "")
-      this.placeholder += this.star;
+    if (!this.needQuestion && this.star != "") this.placeholder += this.star;
     this.cols = item.cols || "30";
     this.rows = item.rows || "10";
-    this.wrap = (item.wrap) ? 'wrap="' + item.wrap + '" ' : "";
+    this.wrap = item.wrap ? 'wrap="' + item.wrap + '" ' : "";
 
     this.html = this._generate();
     this.render();
   }
   Textarea.prototype = inherit(Tag.prototype);
-  Textarea.prototype._generate = function() {
-    var component = '<textarea class="mdl-textfield__input" id="{0}" rows={1} columns={2} form="{4}" maxlength="{4}" {5} {6} {7} {8} {9} name="{10}" placeholder="{11}"></textarea>'.format(
-      this.id, this.rows, this.cols, this.parent_id, this.maxlength, this.readonly, this.required, this.disabled, this.autofocus, this.wrap, this.name, this.placeholder)
+  Textarea.prototype._generate = function () {
+    var component =
+      '<textarea class="mdl-textfield__input" id="{0}" rows={1} columns={2} form="{4}" maxlength="{4}" {5} {6} {7} {8} {9} name="{10}" placeholder="{11}"></textarea>'.format(
+        this.id,
+        this.rows,
+        this.cols,
+        this.parent_id,
+        this.maxlength,
+        this.readonly,
+        this.required,
+        this.disabled,
+        this.autofocus,
+        this.wrap,
+        this.name,
+        this.placeholder
+      );
 
     return '<div class="{0}">{1}<div>'.format(this.style, component);
-  }
+  };
 
   /*
   ############################################################
@@ -1113,27 +1219,37 @@ Dropdown.prototype._option_factory = function() {
     // this.type --> type as a <input> tag
     // this.type_class --> template of different type class in mdl i.e. checkbox switch...
     // this.content_class --> template of different content class in mdl
-    this.ripple = (item.ripple == false) ? false : true;
+    this.ripple = item.ripple == false ? false : true;
     this.toggle_type = item.toggle_type;
 
     this.value = item.value || this.label;
 
-    this.checked = (item.checked) ? 'checked="checked"' : "";
+    this.checked = item.checked ? 'checked="checked"' : "";
   }
   Toggle.prototype = inherit(Tag.prototype);
-  Toggle.prototype._generate = function() {
+  Toggle.prototype._generate = function () {
     var addon = "";
-    addon += ((this.ripple) ? " mdl-js-ripple-effect" : "");
+    addon += this.ripple ? " mdl-js-ripple-effect" : "";
 
     var html = '<label for="{0}" class="mdl-{1} mdl-js-{1}{2}">'.format(
-      this.id, this.toggle_type, addon
+      this.id,
+      this.toggle_type,
+      addon
+    );
+    html +=
+      '<input type="{0}" id="{1}" class="{2}" form="{3}" {4} {5} {6} value="{7}" name="{8}" {9}>'.format(
+        this.type,
+        this.id,
+        this.type_class,
+        this.parent_id,
+        this.checked,
+        this.autofocus,
+        this.required,
+        this.value,
+        this.name,
+        this.readonly
       );
-    html += '<input type="{0}" id="{1}" class="{2}" form="{3}" {4} {5} {6} value="{7}" name="{8}" {9}>'.format(
-      this.type, this.id, this.type_class, this.parent_id,
-      this.checked, this.autofocus, this.required,
-      this.value, this.name, this.readonly
-      );
-    html += this.content_class + '</label>'
+    html += this.content_class + "</label>";
 
     return html;
   };
@@ -1145,16 +1261,18 @@ Dropdown.prototype._option_factory = function() {
     item.label = item.label || "Checkbox #{0}".format(__INPUT_CHECKBOX - 1);
     Toggle.call(this, parent_id, item);
 
-    this.type_class = 'mdl-checkbox__input';
-    var isImage = this.label.startsWith("<div") && this.label.endsWith("</div>")
+    this.type_class = "mdl-checkbox__input";
+    var isImage =
+      this.label.startsWith("<div") && this.label.endsWith("</div>");
     if (!isImage)
-      this.content_class = '<span class="mdl-checkbox__label">{0}</span>'.format(this.label);
+      this.content_class =
+        '<span class="mdl-checkbox__label">{0}</span>'.format(this.label);
     else
-      this.content_class = '<span class="mdl-checkbox__label">{0}</span>'.format(this.value);
+      this.content_class =
+        '<span class="mdl-checkbox__label">{0}</span>'.format(this.value);
 
     this.html = this._generate();
-    if (isImage)
-      this.html += this.label;
+    if (isImage) this.html += this.label;
   }
   Checkbox.prototype = inherit(Toggle.prototype);
 
@@ -1165,16 +1283,20 @@ Dropdown.prototype._option_factory = function() {
     item.label = item.label || "Switch #{0}".format(__INPUT_CHECKBOX - 1);
     Toggle.call(this, parent_id, item);
 
-    this.type_class = 'mdl-switch__input';
-    var isImage = this.label.startsWith("<div") && this.label.endsWith("</div>")
+    this.type_class = "mdl-switch__input";
+    var isImage =
+      this.label.startsWith("<div") && this.label.endsWith("</div>");
     if (!isImage)
-      this.content_class = '<span class="mdl-switch__label">{0}</span>'.format(this.label);
+      this.content_class = '<span class="mdl-switch__label">{0}</span>'.format(
+        this.label
+      );
     else
-      this.content_class = '<span class="mdl-switch__label">{0}</span>'.format(this.value);
+      this.content_class = '<span class="mdl-switch__label">{0}</span>'.format(
+        this.value
+      );
 
     this.html = this._generate();
-    if (isImage)
-      this.html += this.label;
+    if (isImage) this.html += this.label;
   }
   Switch.prototype = inherit(Toggle.prototype);
 
@@ -1185,17 +1307,23 @@ Dropdown.prototype._option_factory = function() {
     item.label = item.label || "Radio #{0}".format(__INPUT_RADIO - 1);
     Toggle.call(this, parent_id, item);
 
-    this.type_class = 'mdl-radio__button';
-    var isImage = this.label.startsWith("<div") && this.label.endsWith("</div>")
+    this.type_class = "mdl-radio__button";
+    var isImage =
+      this.label.startsWith("<div") && this.label.endsWith("</div>");
     if (!isImage)
-      this.content_class = '<span class="mdl-radio__label">{0}</span>'.format(this.label);
+      this.content_class = '<span class="mdl-radio__label">{0}</span>'.format(
+        this.label
+      );
     else
-      this.content_class = '<span class="mdl-radio__label">{0}{1}</span>'.format(this.value, this.label);
+      this.content_class =
+        '<span class="mdl-radio__label">{0}{1}</span>'.format(
+          this.value,
+          this.label
+        );
 
     this.html = this._generate();
   }
   Radio.prototype = inherit(Toggle.prototype);
-
 
   /*
   ############################################################
@@ -1227,7 +1355,7 @@ Dropdown.prototype._option_factory = function() {
     item.type = item.type || "checkbox";
     item.name = item.name || item.id;
     item.label = item.label || item.id;
-    item.needQuestion = (item.needQuestion == false) ? false : true;
+    item.needQuestion = item.needQuestion == false ? false : true;
     item.images = item.images || [];
     item.labels = item.labels || [];
     item.values = item.values || [];
@@ -1238,13 +1366,16 @@ Dropdown.prototype._option_factory = function() {
     for (var i in item.labels) {
       if (item.values.length < item.labels.length)
         item.values.push(item.labels[i]);
-      else
-        break;
+      else break;
     }
     if (item.images.length > 0) {
       for (var i in item.images) {
-        item.labels.push('<div class="mdl-card mdl-shadow--2dp" \
-          style="width: 256px;height: 256px;background: url({0}) center/cover;"></div>'.format(item.images[i]));
+        item.labels.push(
+          '<div class="mdl-card mdl-shadow--2dp" \
+          style="width: 256px;height: 256px;background: url({0}) center/cover;"></div>'.format(
+            item.images[i]
+          )
+        );
         if (item.values.length < item.labels.length)
           item.values.push(item.images[i]);
       }
@@ -1283,23 +1414,22 @@ Dropdown.prototype._option_factory = function() {
     this.render();
   }
   ToggleGroup.prototype = inherit(Tag.prototype);
-  ToggleGroup.prototype._selector = function() {
+  ToggleGroup.prototype._selector = function () {
     switch (this.type) {
       case "checkbox":
-      return function(parent_id, item) {
-        return new Checkbox(parent_id, item);
-      }
+        return function (parent_id, item) {
+          return new Checkbox(parent_id, item);
+        };
       case "switch":
-      return function(parent_id, item) {
-        return new Switch(parent_id, item);
-      }
+        return function (parent_id, item) {
+          return new Switch(parent_id, item);
+        };
       case "radio":
-      return function(parent_id, item) {
-        return new Radio(parent_id, item);
-      }
+        return function (parent_id, item) {
+          return new Radio(parent_id, item);
+        };
     }
-  }
+  };
 
   return plugin;
-
 })();
