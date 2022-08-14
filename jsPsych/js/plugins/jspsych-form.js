@@ -35,7 +35,7 @@ var schema = {
     "Question #7": {type: "long answer", question_description: ""}, ## better styled
     "Question #8<p>Contents</p>": {type: "long answer"},
 
-    onSubmit: {label: "Next"}
+    onSubmit: {label: "次へ"}
   };
 
 

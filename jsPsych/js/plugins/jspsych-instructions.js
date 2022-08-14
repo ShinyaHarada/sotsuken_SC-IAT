@@ -52,7 +52,7 @@ jsPsych.plugins.instructions = (function() {
         type: jsPsych.plugins.parameterType.BOOL,
         pretty_name: 'Show clickable nav',
         default: false,
-        description: 'If true, then a "Previous" and "Next" button will be displayed beneath the instructions.'
+        description: 'If true, then a "Previous" and "次へ" button will be displayed beneath the instructions.'
       },
       button_label_previous: {
         type: jsPsych.plugins.parameterType.STRING,
@@ -63,7 +63,7 @@ jsPsych.plugins.instructions = (function() {
       button_label_next: {
         type: jsPsych.plugins.parameterType.STRING,
         pretty_name: 'Button label next',
-        default: 'Next',
+        default: '次へ',
         description: 'The text that appears on the button to go forwards.'
       }
     }
