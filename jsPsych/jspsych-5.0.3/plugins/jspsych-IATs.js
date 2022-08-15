@@ -23,7 +23,7 @@ jsPsych.plugins.IAT = (function() {
     trial.force_correct_button_press = (typeof trial.force_correct_button_press === 'undefined') ? false : trial.force_correct_button_press;
     trial.prompt = (typeof trial.prompt === 'undefined') ? '' : trial.prompt;
     trial.show_feedback_on_timeout = (typeof trial.show_feedback_on_timeout === 'undefined') ? false : trial.show_feedback_on_timeout;
-    trial.timeout_message = trial.timeout_message || "<div class ='iat-response'>Please respond faster.</div>";
+    trial.timeout_message = trial.timeout_message || "<div class ='iat-response'>もう少し早く押してください.</div>";
     // timing params
     trial.timing_stim = trial.timing_stim || -1; // default is to show image until response
     trial.timing_response = trial.timing_response || -1; // default is no max response time
