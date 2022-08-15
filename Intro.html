@@ -27,7 +27,26 @@
 		show_clickable_nav: true
 	};
 	
-	var person = prompt("あなたに付与されたIDを半角英数字で入力してください。", "");
+	var person = prompt("あなたに付与されたIDを半角数字で入力してください。", "");
+
+	let personVerified=false
+
+	//var length=person.length //入力された文字数を返す
+	
+	if (person.length===5){
+		if(person.match(/^\d+$/)){
+			personVerified=true
+		}		
+	}//入力された文字数が5ならtrueを返す
+	
+	while(!personVerified){
+		person = prompt("入力に誤りがあります。あなたに付与されたIDを半角数字で入力してください。", "");
+		if (person.length===5){
+			if(person.match(/^\d+$/)){
+				personVerified=true
+			}		
+		}
+	}
 	
 	if (person == "") {
 		var person = Math.floor(Math.random() * 1000) + 1  //idの管理
