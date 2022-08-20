@@ -23,7 +23,7 @@ jsPsych.plugins.categorize = (function() {
     trial.force_correct_button_press = (typeof trial.force_correct_button_press === 'undefined') ? false : trial.force_correct_button_press;
     trial.prompt = (typeof trial.prompt === 'undefined') ? '' : trial.prompt;
     trial.show_feedback_on_timeout = (typeof trial.show_feedback_on_timeout === 'undefined') ? false : trial.show_feedback_on_timeout;
-    trial.timeout_message = trial.timeout_message || "<p>もう少し早く押してください.</p>";
+    trial.timeout_message = trial.timeout_message || "<p>もう少し速く押してください.</p>";
     // timing params
     trial.timing_stim = trial.timing_stim || -1; // default is to show image until response
     trial.timing_response = trial.timing_response || -1; // default is no max response time

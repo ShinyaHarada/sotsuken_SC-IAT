@@ -78,7 +78,7 @@ jsPsych.plugins['categorize-html'] = (function() {
       timeout_message: {
         type: jsPsych.plugins.parameterType.STRING,
         pretty_name: 'Timeout message',
-        default: "<p>もう少し早く押してください.</p>",
+        default: "<p>もう少し速く押してください.</p>",
         description: 'The message displayed on a timeout non-response.'
       },
       stimulus_duration: {
