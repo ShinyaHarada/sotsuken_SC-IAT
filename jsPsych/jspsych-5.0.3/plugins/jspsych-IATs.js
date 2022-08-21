@@ -134,6 +134,7 @@ jsPsych.plugins.IAT = (function() {
 
       if (timeout && !trial.show_feedback_on_timeout) {
         display_element.append(trial.timeout_message);
+        //setTimeout(function(){}, 350);
       } else {
         // show image during feedback if flag is set
         if (trial.show_stim_with_feedback) {
@@ -187,9 +188,15 @@ jsPsych.plugins.IAT = (function() {
         });
 
       } else {
-        setTimeout(function() {
-          endTrial();
-        }, trial.timing_feedback_duration);
+        if (timeout && !trial.show_feedback_on_timeout) {
+          setTimeout(function() {
+            endTrial();
+          }, 500);
+        } else {
+          setTimeout(function() {
+            endTrial();
+          }, trial.timing_feedback_duration);
+        }
       }
 
     }
