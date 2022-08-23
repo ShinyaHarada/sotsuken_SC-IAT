@@ -30,7 +30,7 @@
 	var person = prompt("あなたに付与されたIDを半角数字で入力してください。", "");
 
 	if (person == null){
-		alert("F5のキーを押してもう一度入力してください。")
+		alert("実験を続けるなら、F5のキーを押してもう一度入力してください。")
 	} 
 
 
@@ -53,15 +53,18 @@
 			if(person.match(/^\d+$/)){
 				personVerified=true
 			}		
+		} else if(person==null){
+			alert("実験を続けるなら、F5のキーを押してもう一度入力してください。")
 		}
 	}
 	
-	if (person == "") {
+
+	/*if (person == "") {
 		var person = Math.floor(Math.random() * 1000) + 1  //idの管理
 		}
 	if (person == null) {
 		var person = Math.floor(Math.random() * 1000) + 1
-		}
+		}*/
 		
 	var timeline = [];
 	timeline.push(inductive_text);
