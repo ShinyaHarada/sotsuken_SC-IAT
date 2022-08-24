@@ -48,14 +48,15 @@
 	//入力された文字数が5ならtrueを返す
 	
 	while(!personVerified){
-		let person2 = prompt("入力に誤りがあります。あなたに付与されたIDを半角数字で入力してください。", "");
-		if (person2.length==5){
-			if(person2.match(/^\d+$/)){
+		person = prompt("入力に誤りがあります。あなたに付与されたIDを半角数字で入力してください。", "");
+		console.log(person);
+		if(person==null){
+			alert("実験を続けるなら、F5のキーを押してもう一度入力してください。")
+		} else if (person.length==5){
+			if(person.match(/^\d+$/)){
 				personVerified=true
 			}		
-		} else if(person2==null){
-			alert("実験を続けるなら、F5のキーを押してもう一度入力してください。")
-		}
+		} 
 	}
 	
 
