@@ -1,0 +1,42 @@
+
+<!doctype html>
+<html>
+    <head>
+        <title>SC-IAT</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="jsPsych/jspsych-5.0.3/jspsych.js"></script>
+        <script src="jsPsych/jspsych-5.0.3/jspsych7.js"></script>
+		<link href="jsPsych/jspsych-5.0.3/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+		<script src="jsPsych/jspsych-5.0.3/plugins/jspsych-text.js"></script>
+		<script src="jsPsych/jspsych-5.0.3/plugins/jspsych-IATs.js"></script>
+		<script src="jsPsych/jspsych-5.0.3/plugins/jspsych-survey-text.js"></script>
+		<script src="jsPsych/jspsych-5.0.3/plugins/jspsych-instructions.js"></script>
+		<script src="jsPsych/jspsych-5.0.3/plugins/jspsych-call-function.js"></script>
+		<script src="PoComFir_main.js"></script>
+	</head>
+    <body>
+	<div class = "left-side"> </div>
+	<div class = "right-side"> </div>
+	</body>
+	<script>
+	
+	
+	/* start the experiment */
+
+	var images = ['jsPsych/jspsych-5.0.3/img/Apple_Logo.jpg'];
+
+	jsPsych.pluginAPI.preloadImages(images, function(){ startExperiment(); });
+
+	function startExperiment(){
+	jsPsych.init({
+		fullscreen: true
+		,timeline: timeline
+		,on_finish: function()
+		{
+			window.location.replace("https://www.google.com/search?q="+urlvar.subject);//ここもクアルトリクスにする
+		}
+	});
+	}
+    </script>
+</html>
+
