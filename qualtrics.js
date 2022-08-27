@@ -7,7 +7,7 @@ Qualtrics.SurveyEngine.addOnload(function()
     var task_github = "https://shinyaharada.github.io/sotsuken_SC-IAT/"; 
  
     var requiredResources = [
-        task_github + "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js",
+        "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js",
         task_github + "jsPsych/jspsych-5.0.3/jspsych.js",
         task_github + "jsPsych/jspsych-5.0.3/jspsych7.js",
         task_github + "jsPsych/jspsych-5.0.3/css/jspsych.css",
@@ -16,8 +16,7 @@ Qualtrics.SurveyEngine.addOnload(function()
         task_github + "jsPsych/jspsych-5.0.3/plugins/jspsych-survey-text.js",
         task_github + "jsPsych/jspsych-5.0.3/plugins/jspsych-instructions.js",
         task_github + "jsPsych/jspsych-5.0.3/plugins/jspsych-call-function.js",
-        task_github + "PoComFir_main.js",
-        task_github + "jquery-3.6.1.min.js"
+        task_github + "PoComFir_main.js"
     ];
 
     function loadScript(idx) {
