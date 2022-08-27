@@ -16,7 +16,8 @@ Qualtrics.SurveyEngine.addOnload(function()
         task_github + "jsPsych/jspsych-5.0.3/plugins/jspsych-survey-text.js",
         task_github + "jsPsych/jspsych-5.0.3/plugins/jspsych-instructions.js",
         task_github + "jsPsych/jspsych-5.0.3/plugins/jspsych-call-function.js",
-        task_github + "PoComFir_main.js"
+        task_github + "PoComFir_main.js",
+        task_github + "jquery-3.6.1.min.js"
     ];
 
     function loadScript(idx) {
