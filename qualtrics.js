@@ -37,11 +37,6 @@ Qualtrics.SurveyEngine.addOnload(function()
     
     jQuery("<div id = 'display_stage_background'></div>").appendTo('body');
     jQuery("<div id = 'display_stage'></div>").appendTo('body');
-});
-
-Qualtrics.SurveyEngine.addOnReady(function()
-
-{ 
     console.log("before fnc()");
     function initExp() {
         jsPsych.init({
@@ -61,6 +56,11 @@ Qualtrics.SurveyEngine.addOnReady(function()
         });
       };
     console.log("after fnc()");
+});
+
+Qualtrics.SurveyEngine.addOnReady(function()
+
+{ 
      
 });
  
