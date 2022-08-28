@@ -42,12 +42,12 @@ jsPsych.plugins.similarity = (function() {
 
     // show the images
     if (!trial.is_html) {
-      display_element.append($('<img>', {
+      display_element.append(jQuery('<img>', {
         "src": trial.stimuli[0],
         "id": 'jspsych-sim-stim'
       }));
     } else {
-      display_element.append($('<div>', {
+      display_element.append(jQuery('<div>', {
         "html": trial.stimuli[0],
         "id": 'jspsych-sim-stim'
       }));
@@ -64,7 +64,7 @@ jsPsych.plugins.similarity = (function() {
 
     function showBlankScreen() {
 
-      $('#jspsych-sim-stim').css('visibility', 'hidden');
+      jQuery('#jspsych-sim-stim').css('visibility', 'hidden');
 
       setTimeoutHandlers.push(setTimeout(function() {
         showSecondStim();
@@ -74,12 +74,12 @@ jsPsych.plugins.similarity = (function() {
     function showSecondStim() {
 
       if (!trial.is_html) {
-        $('#jspsych-sim-stim').attr('src', trial.stimuli[1]);
+        jQuery('#jspsych-sim-stim').attr('src', trial.stimuli[1]);
       } else {
-        $('#jspsych-sim-stim').html(trial.stimuli[1]);
+        jQuery('#jspsych-sim-stim').html(trial.stimuli[1]);
       }
 
-      $('#jspsych-sim-stim').css('visibility', 'visible');
+      jQuery('#jspsych-sim-stim').css('visibility', 'visible');
 
       if (trial.show_response == "SECOND_STIMULUS") {
         show_response_slider(display_element, trial);
@@ -87,7 +87,7 @@ jsPsych.plugins.similarity = (function() {
 
       if (trial.timing_second_stim > 0) {
         setTimeoutHandlers.push(setTimeout(function() {
-          $("#jspsych-sim-stim").css('visibility', 'hidden');
+          jQuery("#jspsych-sim-stim").css('visibility', 'hidden');
           if (trial.show_response == "POST_STIMULUS") {
             show_response_slider(display_element, trial);
           }
@@ -101,12 +101,12 @@ jsPsych.plugins.similarity = (function() {
       var startTime = (new Date()).getTime();
 
       // create slider
-      display_element.append($('<div>', {
+      display_element.append(jQuery('<div>', {
         "id": 'slider',
         "class": 'sim'
       }));
 
-      $("#slider").slider({
+      jQuery("#slider").slider({
         value: Math.ceil(trial.intervals / 2),
         min: 1,
         max: trial.intervals,
@@ -116,12 +116,12 @@ jsPsych.plugins.similarity = (function() {
       // show tick marks
       if (trial.show_ticks) {
         for (var j = 1; j < trial.intervals - 1; j++) {
-          $('#slider').append('<div class="slidertickmark"></div>');
+          jQuery('#slider').append('<div class="slidertickmark"></div>');
         }
 
-        $('#slider .slidertickmark').each(function(index) {
+        jQuery('#slider .slidertickmark').each(function(index) {
           var left = (index + 1) * (100 / (trial.intervals - 1));
-          $(this).css({
+          jQuery(this).css({
             'position': 'absolute',
             'left': left + '%',
             'width': '1px',
@@ -132,7 +132,7 @@ jsPsych.plugins.similarity = (function() {
       }
 
       // create labels for slider
-      display_element.append($('<ul>', {
+      display_element.append(jQuery('<ul>', {
         "id": "sliderlabels",
         "class": 'sliderlabels',
         "css": {
@@ -146,17 +146,17 @@ jsPsych.plugins.similarity = (function() {
       }));
 
       for (var j = 0; j < trial.labels.length; j++) {
-        $("#sliderlabels").append('<li>' + trial.labels[j] + '</li>');
+        jQuery("#sliderlabels").append('<li>' + trial.labels[j] + '</li>');
       }
 
       // position labels to match slider intervals
-      var slider_width = $("#slider").width();
+      var slider_width = jQuery("#slider").width();
       var num_items = trial.labels.length;
       var item_width = slider_width / num_items;
       var spacing_interval = slider_width / (num_items - 1);
 
-      $("#sliderlabels li").each(function(index) {
-        $(this).css({
+      jQuery("#sliderlabels li").each(function(index) {
+        jQuery(this).css({
           'display': 'inline-block',
           'width': item_width + 'px',
           'margin': '0px',
@@ -168,7 +168,7 @@ jsPsych.plugins.similarity = (function() {
       });
 
       //  create button
-      display_element.append($('<button>', {
+      display_element.append(jQuery('<button>', {
         'id': 'next',
         'class': 'sim',
         'html': 'Submit Answer'
@@ -179,7 +179,7 @@ jsPsych.plugins.similarity = (function() {
         display_element.append(trial.prompt);
       }
 
-      $("#next").click(function() {
+      jQuery("#next").click(function() {
         var endTime = (new Date()).getTime();
         var response_time = endTime - startTime;
 
@@ -188,7 +188,7 @@ jsPsych.plugins.similarity = (function() {
           clearTimeout(setTimeoutHandlers[i]);
         }
 
-        var score = $("#slider").slider("value");
+        var score = jQuery("#slider").slider("value");
         var trial_data = {
           "sim_score": score,
           "rt": response_time,

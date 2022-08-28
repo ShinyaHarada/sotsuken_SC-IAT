@@ -43,13 +43,13 @@ jsPsych.plugins.categorize = (function() {
 
     if (!trial.is_html) {
       // add image to display
-      display_element.append($('<img>', {
+      display_element.append(jQuery('<img>', {
         "src": trial.stimulus,
         "class": 'jspsych-categorize-stimulus',
         "id": 'jspsych-categorize-stimulus'
       }));
     } else {
-      display_element.append($('<div>', {
+      display_element.append(jQuery('<div>', {
         "id": 'jspsych-categorize-stimulus',
         "class": 'jspsych-categorize-stimulus',
         "html": trial.stimulus
@@ -59,7 +59,7 @@ jsPsych.plugins.categorize = (function() {
     // hide image after time if the timing parameter is set
     if (trial.timing_stim > 0) {
       setTimeoutHandlers.push(setTimeout(function() {
-        $('#jspsych-categorize-stimulus').css('visibility', 'hidden');
+        jQuery('#jspsych-categorize-stimulus').css('visibility', 'hidden');
       }, trial.timing_stim));
     }
 
@@ -136,13 +136,13 @@ jsPsych.plugins.categorize = (function() {
         if (trial.show_stim_with_feedback) {
           if (!trial.is_html) {
             // add image to display
-            display_element.append($('<img>', {
+            display_element.append(jQuery('<img>', {
               "src": trial.stimulus,
               "class": 'jspsych-categorize-stimulus',
               "id": 'jspsych-categorize-stimulus'
             }));
           } else {
-            display_element.append($('<div>', {
+            display_element.append(jQuery('<div>', {
               "id": 'jspsych-categorize-stimulus',
               "class": 'jspsych-categorize-stimulus',
               "html": trial.stimulus

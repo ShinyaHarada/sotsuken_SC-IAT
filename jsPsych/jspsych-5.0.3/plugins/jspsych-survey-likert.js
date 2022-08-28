@@ -23,17 +23,17 @@ jsPsych.plugins['survey-likert'] = (function() {
     trial = jsPsych.pluginAPI.evaluateFunctionParameters(trial);
 
     // show preamble text
-    display_element.append($('<div>', {
+    display_element.append(jQuery('<div>', {
       "id": 'jspsych-survey-likert-preamble',
       "class": 'jspsych-survey-likert-preamble'
     }));
 
-    $('#jspsych-survey-likert-preamble').html(trial.preamble);
+    jQuery('#jspsych-survey-likert-preamble').html(trial.preamble);
 
     display_element.append('<form id="jspsych-survey-likert-form">');
     // add likert scale questions
     for (var i = 0; i < trial.questions.length; i++) {
-      form_element = $('#jspsych-survey-likert-form');
+      form_element = jQuery('#jspsych-survey-likert-form');
       // add question
       form_element.append('<label class="jspsych-survey-likert-statement">' + trial.questions[i] + '</label>');
       // add options
@@ -47,27 +47,27 @@ jsPsych.plugins['survey-likert'] = (function() {
     }
 
     // add submit button
-    display_element.append($('<button>', {
+    display_element.append(jQuery('<button>', {
       'id': 'jspsych-survey-likert-next',
       'class': 'jspsych-survey-likert jspsych-btn'
     }));
-    $("#jspsych-survey-likert-next").html('Submit Answers');
-    $("#jspsych-survey-likert-next").click(function() {
+    jQuery("#jspsych-survey-likert-next").html('Submit Answers');
+    jQuery("#jspsych-survey-likert-next").click(function() {
       // measure response time
       var endTime = (new Date()).getTime();
       var response_time = endTime - startTime;
 
       // create object to hold responses
       var question_data = {};
-      $("#jspsych-survey-likert-form .jspsych-survey-likert-opts").each(function(index) {
-        var id = $(this).data('radio-group');
-        var response = $('input[name="' + id + '"]:checked').val();
+      jQuery("#jspsych-survey-likert-form .jspsych-survey-likert-opts").each(function(index) {
+        var id = jQuery(this).data('radio-group');
+        var response = jQuery('input[name="' + id + '"]:checked').val();
         if (typeof response == 'undefined') {
           response = -1;
         }
         var obje = {};
         obje[id] = response;
-        $.extend(question_data, obje);
+        jQuery.extend(question_data, obje);
       });
 
       // save data

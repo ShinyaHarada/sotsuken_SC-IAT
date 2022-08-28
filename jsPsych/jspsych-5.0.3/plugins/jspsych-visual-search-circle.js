@@ -90,7 +90,7 @@ jsPsych.plugins["visual-search-circle"] = (function() {
     }
 
     // get target to draw on
-    display_element.append($('<svg id="jspsych-visual-search-circle-svg" width=' + paper_size + ' height=' + paper_size + '></svg>'));
+    display_element.append(jQuery('<svg id="jspsych-visual-search-circle-svg" width=' + paper_size + ' height=' + paper_size + '></svg>'));
     var paper = Snap('#jspsych-visual-search-circle-svg');
 
     show_fixation();

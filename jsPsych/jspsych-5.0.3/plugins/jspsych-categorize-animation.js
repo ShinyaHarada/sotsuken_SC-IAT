@@ -57,7 +57,7 @@ jsPsych.plugins["categorize-animation"] = (function() {
       }
 
       if (showAnimation) {
-        display_element.append($('<img>', {
+        display_element.append(jQuery('<img>', {
           "src": trial.stimuli[animate_frame],
           "class": 'jspsych-categorize-animation-stimulus'
         }));

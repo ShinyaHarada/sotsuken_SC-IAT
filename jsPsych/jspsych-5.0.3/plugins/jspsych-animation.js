@@ -52,7 +52,7 @@ jsPsych.plugins.animation = (function() {
 
     function show_next_frame() {
       // show image
-      display_element.append($('<img>', {
+      display_element.append(jQuery('<img>', {
         "src": trial.stimuli[animate_frame],
         "id": 'jspsych-animation-image'
       }));
@@ -71,7 +71,7 @@ jsPsych.plugins.animation = (function() {
 
       if (trial.frame_isi > 0) {
         setTimeout(function() {
-          $('#jspsych-animation-image').css('visibility', 'hidden');
+          jQuery('#jspsych-animation-image').css('visibility', 'hidden');
           current_stim = 'blank';
           // record when blank image was shown
           animation_sequence.push({
@@ -92,7 +92,7 @@ jsPsych.plugins.animation = (function() {
 
       // after a valid response, the stimulus will have the CSS class 'responded'
       // which can be used to provide visual feedback that a response was recorded
-      $("#jspsych-animation-image").addClass('responded');
+      jQuery("#jspsych-animation-image").addClass('responded');
     }
 
     // hold the jspsych response listener object in memory

@@ -90,7 +90,7 @@ jsPsych.plugins['vsl-animate-occlusion'] = (function() {
       }
     }
 
-    display_element.append($("<svg id='jspsych-vsl-animate-occlusion-canvas' width=" + trial.canvas_size[0] + " height=" + trial.canvas_size[1] + "></svg>"));
+    display_element.append(jQuery("<svg id='jspsych-vsl-animate-occlusion-canvas' width=" + trial.canvas_size[0] + " height=" + trial.canvas_size[1] + "></svg>"));
 
     var paper = Snap("#jspsych-vsl-animate-occlusion-canvas");
 

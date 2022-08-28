@@ -67,17 +67,17 @@ jsPsych.plugins['reconstruction'] = (function() {
 
       display_element.html('');
 
-      display_element.append($('<div id="jspsych-reconstruction-stim-container"></div>'));
+      display_element.append(jQuery('<div id="jspsych-reconstruction-stim-container"></div>'));
 
-      $('#jspsych-reconstruction-stim-container').html(trial.stim_function(param));
+      jQuery('#jspsych-reconstruction-stim-container').html(trial.stim_function(param));
 
       // add submit button
-      display_element.append($('<button>', {
+      display_element.append(jQuery('<button>', {
         'id': 'jspsych-reconstruction-next',
         'class': 'jspsych-btn jspsych-reconstruction'
       }));
-      $("#jspsych-reconstruction-next").html('Submit Answers');
-      $("#jspsych-reconstruction-next").click(endTrial);
+      jQuery("#jspsych-reconstruction-next").html('Submit Answers');
+      jQuery("#jspsych-reconstruction-next").click(endTrial);
     }
 
     function endTrial() {

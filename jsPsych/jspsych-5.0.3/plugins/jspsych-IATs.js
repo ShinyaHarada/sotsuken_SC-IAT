@@ -43,13 +43,13 @@ jsPsych.plugins.IAT = (function() {
 
     if (!trial.is_html) {
       // add image to display
-      display_element.append($('<img>', {
+      display_element.append(jQuery('<img>', {
         "src": trial.stimulus,
         "class": 'jspsych-IAT-stimulus',
         "id": 'jspsych-IAT-stimulus'
       }));
     } else {
-      display_element.append($('<div>', {
+      display_element.append(jQuery('<div>', {
         "id": 'jspsych-IAT-stimulus',
         "class": 'jspsych-IAT-stimulus',
         "html": trial.stimulus
@@ -59,7 +59,7 @@ jsPsych.plugins.IAT = (function() {
     // hide image after time if the timing parameter is set
     if (trial.timing_stim > 0) {
       setTimeoutHandlers.push(setTimeout(function() {
-        $('#jspsych-IAT-stimulus').css('visibility', 'hidden');
+        jQuery('#jspsych-IAT-stimulus').css('visibility', 'hidden');
       }, trial.timing_stim));
     }
 
@@ -70,14 +70,14 @@ jsPsych.plugins.IAT = (function() {
 
 	// if left_target is set, show left_target
     if (trial.left_target !== "") {
-		$('div.left-side').empty();
-		$('body').before($('<div class = "left-side">'+trial.left_target+'</div>'));
+		jQuery('div.left-side').empty();
+		jQuery('body').before(jQuery('<div class = "left-side">'+trial.left_target+'</div>'));
    }
 	
 	// if right_target is set, show right_target
    if (trial.right_target !== "") {
-		$('div.right-side').empty();
-		$('body').before($('<div class = "right-side">'+trial.right_target+'</div>'));  
+		jQuery('div.right-side').empty();
+		jQuery('body').before(jQuery('<div class = "right-side">'+trial.right_target+'</div>'));  
 	}
 
     var trial_data = {};
@@ -140,13 +140,13 @@ jsPsych.plugins.IAT = (function() {
         if (trial.show_stim_with_feedback) {
           if (!trial.is_html) {
             // add image to display
-            display_element.append($('<img>', {
+            display_element.append(jQuery('<img>', {
               "src": trial.stimulus,
               "class": 'jspsych-IAT-stimulus',
               "id": 'jspsych-IAT-stimulus'
             }));
           } else {
-            display_element.append($('<div>', {
+            display_element.append(jQuery('<div>', {
               "id": 'jspsych-IAT-stimulus',
               "class": 'jspsych-IAT-stimulus',
               "html": trial.stimulus

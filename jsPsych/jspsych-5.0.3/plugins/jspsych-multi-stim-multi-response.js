@@ -146,12 +146,12 @@ jsPsych.plugins["multi-stim-multi-response"] = (function() {
 
       // display stimulus
       if (!trial.is_html) {
-        display_element.append($('<img>', {
+        display_element.append(jQuery('<img>', {
           src: trial.stimuli[whichStimulus],
           id: 'jspsych-multi-stim-multi-response-stimulus'
         }));
       } else {
-        display_element.append($('<div>', {
+        display_element.append(jQuery('<div>', {
           html: trial.stimuli[whichStimulus],
           id: 'jspsych-multi-stim-multi-response-stimulus'
         }));
@@ -171,7 +171,7 @@ jsPsych.plugins["multi-stim-multi-response"] = (function() {
             whichStimulus++;
             showNextStimulus();
           } else {
-            $('#jspsych-multi-stim-multi-response-stimulus').css('visibility', 'hidden');
+            jQuery('#jspsych-multi-stim-multi-response-stimulus').css('visibility', 'hidden');
           }
 
         }, trial.timing_stim[whichStimulus]);

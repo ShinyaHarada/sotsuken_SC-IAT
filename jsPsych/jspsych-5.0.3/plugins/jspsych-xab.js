@@ -51,12 +51,12 @@ jsPsych.plugins.xab = (function() {
     // how we display the content depends on whether the content is
     // HTML code or an image path.
     if (!trial.is_html) {
-      display_element.append($('<img>', {
+      display_element.append(jQuery('<img>', {
         src: trial.x_path,
         "class": 'jspsych-xab-stimulus'
       }));
     } else {
-      display_element.append($('<div>', {
+      display_element.append(jQuery('<div>', {
         "class": 'jspsych-xab-stimulus',
         html: trial.x_path
       }));
@@ -70,7 +70,7 @@ jsPsych.plugins.xab = (function() {
 
     function showBlankScreen() {
       // remove the x stimulus
-      $('.jspsych-xab-stimulus').remove();
+      jQuery('.jspsych-xab-stimulus').remove();
 
       // start timer
       setTimeout(function() {
@@ -90,20 +90,20 @@ jsPsych.plugins.xab = (function() {
 
       // show the options
       if (!trial.is_html) {
-        display_element.append($('<img>', {
+        display_element.append(jQuery('<img>', {
           "src": images[0],
           "class": 'jspsych-xab-stimulus left'
         }));
-        display_element.append($('<img>', {
+        display_element.append(jQuery('<img>', {
           "src": images[1],
           "class": 'jspsych-xab-stimulus right'
         }));
       } else {
-        display_element.append($('<div>', {
+        display_element.append(jQuery('<div>', {
           "class": 'jspsych-xab-stimulus left',
           html: images[0]
         }));
-        display_element.append($('<div>', {
+        display_element.append(jQuery('<div>', {
           "class": 'jspsych-xab-stimulus right',
           html: images[1]
         }));
@@ -116,7 +116,7 @@ jsPsych.plugins.xab = (function() {
       // if timing_ab is > 0, then we hide the stimuli after timing_ab milliseconds
       if (trial.timing_ab > 0) {
         setTimeoutHandlers.push(setTimeout(function() {
-          $('.jspsych-xab-stimulus').css('visibility', 'hidden');
+          jQuery('.jspsych-xab-stimulus').css('visibility', 'hidden');
         }, trial.timing_ab));
       }
 

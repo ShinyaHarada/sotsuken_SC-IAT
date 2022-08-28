@@ -572,7 +572,7 @@ jsPsych.plugins["form"] = (function () {
           "beforeend",
           this.question_html + this.question_description_html + this.html
         );
-      // $("#{0}".format(this.parent_id)).append(this.question_html + this.question_description_html + this.html);
+      // jQuery("#{0}".format(this.parent_id)).append(this.question_html + this.question_description_html + this.html);
     },
   };
 
@@ -701,9 +701,9 @@ jsPsych.plugins["form"] = (function () {
       document.getElementById(label_id).value = this.files[0].name;
       document.getElementById(label_id).textContent = this.files[0].name;
     };
-    /*$("#{0}".format(this.id)).change(function() {
-      $("#{0}".format(label_id)).val(this.files[0].name);
-      $("#{0}".format(label_id)).text(this.files[0].name);
+    /*jQuery("#{0}".format(this.id)).change(function() {
+      jQuery("#{0}".format(label_id)).val(this.files[0].name);
+      jQuery("#{0}".format(label_id)).text(this.files[0].name);
     });*/
   }
   UploadFile.prototype = inherit(Tag.prototype);
@@ -799,8 +799,8 @@ jsPsych.plugins["form"] = (function () {
         document.getElementById(id).value;
     };
     /*
-    $("#" + this.id).change(function() {;
-      $("#" + label_id).text($("#" + id).val());
+    jQuery("#" + this.id).change(function() {;
+      jQuery("#" + label_id).text(jQuery("#" + id).val());
     })
     */
   }
@@ -875,8 +875,8 @@ jsPsych.plugins["form"] = (function () {
       document.getElementById(this.option_ids[i]).onclick = function () {
         document.getElementById(label_id).value = option_values[i];
       };
-      /*$("#"+this.option_ids[i]).click(function() {
-     $("#"+label_id).val(option_values[i]);
+      /*jQuery("#"+this.option_ids[i]).click(function() {
+     jQuery("#"+label_id).val(option_values[i]);
    })*/
     }
   }

@@ -24,8 +24,8 @@
 		,cont_key: ['f','j']
 		,on_trial_start: function()
 			{
-				$('div.left-side').empty();
-				$('div.right-side').empty();
+				jQuery('div.left-side').empty();
+				jQuery('div.right-side').empty();
 			}
 	}
 	
@@ -47,8 +47,8 @@
 		,cont_key: ['space']
 		,on_trial_start: function()
 		{
-			$('div.left-side').empty();
-			$('div.right-side').empty();
+			jQuery('div.left-side').empty();
+			jQuery('div.right-side').empty();
 		}
 	};
 		
@@ -83,8 +83,8 @@
 		,cont_key: ['space']
 		,on_trial_start: function()
 			{
-				$('div.left-side').empty();
-				$('div.right-side').empty();
+				jQuery('div.left-side').empty();
+				jQuery('div.right-side').empty();
 			}
 	};
 	
@@ -231,8 +231,8 @@
 			+'<br></br>スペースバーを押して次の課題に取り組んでください。</p>'
 		,on_trial_start: function()
 			{
-				$('div.left-side').empty();
-				$('div.right-side').empty();
+				jQuery('div.left-side').empty();
+				jQuery('div.right-side').empty();
 			}
 		,cont_key: ['space']
 		//,on_finish: function()
@@ -265,7 +265,7 @@
 	/* write to server */
 	function saveData(filename, filedata)
 	{
-	  $.ajax({
+	  jQuery.ajax({
       type:'post',
       cache: false,
       url: 'iatphp.php', // this is the path to the above PHP script

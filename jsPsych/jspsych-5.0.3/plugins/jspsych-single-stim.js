@@ -36,12 +36,12 @@ jsPsych.plugins["single-stim"] = (function() {
 
     // display stimulus
     if (!trial.is_html) {
-      display_element.append($('<img>', {
+      display_element.append(jQuery('<img>', {
         src: trial.stimulus,
         id: 'jspsych-single-stim-stimulus'
       }));
     } else {
-      display_element.append($('<div>', {
+      display_element.append(jQuery('<div>', {
         html: trial.stimulus,
         id: 'jspsych-single-stim-stimulus'
       }));
@@ -92,7 +92,7 @@ jsPsych.plugins["single-stim"] = (function() {
 
       // after a valid response, the stimulus will have the CSS class 'responded'
       // which can be used to provide visual feedback that a response was recorded
-      $("#jspsych-single-stim-stimulus").addClass('responded');
+      jQuery("#jspsych-single-stim-stimulus").addClass('responded');
 
       // only record the first response
       if (response.key == -1) {
@@ -118,7 +118,7 @@ jsPsych.plugins["single-stim"] = (function() {
     // hide image if timing is set
     if (trial.timing_stim > 0) {
       var t1 = setTimeout(function() {
-        $('#jspsych-single-stim-stimulus').css('visibility', 'hidden');
+        jQuery('#jspsych-single-stim-stimulus').css('visibility', 'hidden');
       }, trial.timing_stim);
       setTimeoutHandlers.push(t1);
     }

@@ -35,7 +35,7 @@ jsPsych.plugins['free-sort'] = (function() {
       display_element.append(trial.prompt);
     }
 
-    display_element.append($('<div>', {
+    display_element.append(jQuery('<div>', {
       "id": "jspsych-free-sort-arena",
       "class": "jspsych-free-sort-arena",
       "css": {
@@ -56,7 +56,7 @@ jsPsych.plugins['free-sort'] = (function() {
     for (var i = 0; i < trial.stimuli.length; i++) {
       var coords = random_coordinate(trial.sort_area_width - trial.stim_width, trial.sort_area_height - trial.stim_height);
 
-      $("#jspsych-free-sort-arena").append($('<img>', {
+      jQuery("#jspsych-free-sort-arena").append(jQuery('<img>', {
         "src": trial.stimuli[i],
         "class": "jspsych-free-sort-draggable",
         "css": {
@@ -77,7 +77,7 @@ jsPsych.plugins['free-sort'] = (function() {
 
     var moves = [];
 
-    $('.jspsych-free-sort-draggable').draggable({
+    jQuery('.jspsych-free-sort-draggable').draggable({
       containment: "#jspsych-free-sort-arena",
       scroll: false,
       stack: ".jspsych-free-sort-draggable",
@@ -90,7 +90,7 @@ jsPsych.plugins['free-sort'] = (function() {
       }
     });
 
-    display_element.append($('<button>', {
+    display_element.append(jQuery('<button>', {
       "id": "jspsych-free-sort-done-btn",
       "class": "jspsych-btn jspsych-free-sort",
       "html": "Done",
@@ -100,11 +100,11 @@ jsPsych.plugins['free-sort'] = (function() {
         // gather data
         // get final position of all objects
         var final_locations = [];
-        $('.jspsych-free-sort-draggable').each(function() {
+        jQuery('.jspsych-free-sort-draggable').each(function() {
           final_locations.push({
-            "src": $(this).attr('src'),
-            "x": $(this).css('left'),
-            "y": $(this).css('top')
+            "src": jQuery(this).attr('src'),
+            "x": jQuery(this).css('left'),
+            "y": jQuery(this).css('top')
           });
         });
 

@@ -33,13 +33,13 @@ jsPsych.plugins["button-response"] = (function() {
 
     // display stimulus
     if (!trial.is_html) {
-      display_element.append($('<img>', {
+      display_element.append(jQuery('<img>', {
         src: trial.stimulus,
         id: 'jspsych-button-response-stimulus',
         class: 'block-center'
       }));
     } else {
-      display_element.append($('<div>', {
+      display_element.append(jQuery('<div>', {
         html: trial.stimulus,
         id: 'jspsych-button-response-stimulus',
         class: 'block-center'
@@ -62,9 +62,9 @@ jsPsych.plugins["button-response"] = (function() {
     display_element.append('<div id="jspsych-button-response-btngroup" class="center-content block-center"></div>')
     for (var i = 0; i < trial.choices.length; i++) {
       var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
-      $('#jspsych-button-response-btngroup').append(
-        $(str).attr('id', 'jspsych-button-response-button-' + i).data('choice', i).addClass('jspsych-button-response-button').on('click', function(e) {
-          var choice = $('#' + this.id).data('choice');
+      jQuery('#jspsych-button-response-btngroup').append(
+        jQuery(str).attr('id', 'jspsych-button-response-button-' + i).data('choice', i).addClass('jspsych-button-response-button').on('click', function(e) {
+          var choice = jQuery('#' + this.id).data('choice');
           after_response(choice);
         })
       );
@@ -95,10 +95,10 @@ jsPsych.plugins["button-response"] = (function() {
 
       // after a valid response, the stimulus will have the CSS class 'responded'
       // which can be used to provide visual feedback that a response was recorded
-      $("#jspsych-button-response-stimulus").addClass('responded');
+      jQuery("#jspsych-button-response-stimulus").addClass('responded');
 
       // disable all the buttons after a response
-      $('.jspsych-button-response-button').off('click').attr('disabled', 'disabled');
+      jQuery('.jspsych-button-response-button').off('click').attr('disabled', 'disabled');
 
       if (trial.response_ends_trial) {
         end_trial();
@@ -133,7 +133,7 @@ jsPsych.plugins["button-response"] = (function() {
     // hide image if timing is set
     if (trial.timing_stim > 0) {
       var t1 = setTimeout(function() {
-        $('#jspsych-button-response-stimulus').css('visibility', 'hidden');
+        jQuery('#jspsych-button-response-stimulus').css('visibility', 'hidden');
       }, trial.timing_stim);
       setTimeoutHandlers.push(t1);
     }

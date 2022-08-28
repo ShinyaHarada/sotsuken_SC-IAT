@@ -35,47 +35,47 @@ jsPsych.plugins['survey-text'] = (function() {
     trial = jsPsych.pluginAPI.evaluateFunctionParameters(trial);
 
     // show preamble text
-    display_element.append($('<div>', {
+    display_element.append(jQuery('<div>', {
       "id": 'jspsych-survey-text-preamble',
       "class": 'jspsych-survey-text-preamble'
     }));
 
-    $('#jspsych-survey-text-preamble').html(trial.preamble);
+    jQuery('#jspsych-survey-text-preamble').html(trial.preamble);
 
     // add questions
     for (var i = 0; i < trial.questions.length; i++) {
       // create div
-      display_element.append($('<div>', {
+      display_element.append(jQuery('<div>', {
         "id": 'jspsych-survey-text-' + i,
         "class": 'jspsych-survey-text-question'
       }));
 
       // add question text
-      $("#jspsych-survey-text-" + i).append('<p class="jspsych-survey-text">' + trial.questions[i] + '</p>');
+      jQuery("#jspsych-survey-text-" + i).append('<p class="jspsych-survey-text">' + trial.questions[i] + '</p>');
 
       // add text box
-      $("#jspsych-survey-text-" + i).append('<textarea name="#jspsych-survey-text-response-' + i + '" cols="' + trial.columns[i] + '" rows="' + trial.rows[i] + '"></textarea>');
+      jQuery("#jspsych-survey-text-" + i).append('<textarea name="#jspsych-survey-text-response-' + i + '" cols="' + trial.columns[i] + '" rows="' + trial.rows[i] + '"></textarea>');
     }
 
     // add submit button
-    display_element.append($('<button>', {
+    display_element.append(jQuery('<button>', {
       'id': 'jspsych-survey-text-next',
       'class': 'jspsych-btn jspsych-survey-text'
     }));
-    $("#jspsych-survey-text-next").html('Submit ID');
-    $("#jspsych-survey-text-next").click(function() {
+    jQuery("#jspsych-survey-text-next").html('Submit ID');
+    jQuery("#jspsych-survey-text-next").click(function() {
       // measure response time
       var endTime = (new Date()).getTime();
       var response_time = endTime - startTime;
 
       // create object to hold responses
       var question_data = {};
-      $("div.jspsych-survey-text-question").each(function(index) {
+      jQuery("div.jspsych-survey-text-question").each(function(index) {
         var id = "Q" + index;
-        var val = $(this).children('textarea').val();
+        var val = jQuery(this).children('textarea').val();
         var obje = {};
         obje[id] = val;
-        $.extend(question_data, obje);
+        jQuery.extend(question_data, obje);
       });
 
       // save data

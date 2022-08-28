@@ -30,7 +30,7 @@ jsPsych.plugins.html = (function() {
       var t0 = (new Date()).getTime();
       var finish = function() {
         if (trial.check_fn && !trial.check_fn(display_element)) return;
-        if (trial.cont_key) $(document).unbind('keydown', key_listener);
+        if (trial.cont_key) jQuery(document).unbind('keydown', key_listener);
         var trial_data = {
           rt: (new Date()).getTime() - t0,
           url: trial.url
@@ -38,12 +38,12 @@ jsPsych.plugins.html = (function() {
         display_element.empty();
         jsPsych.finishTrial(trial_data);
       };
-      if (trial.cont_btn) $('#' + trial.cont_btn).click(finish);
+      if (trial.cont_btn) jQuery('#' + trial.cont_btn).click(finish);
       if (trial.cont_key) {
         var key_listener = function(e) {
           if (e.which == trial.cont_key) finish();
         };
-        $(document).keydown(key_listener);
+        jQuery(document).keydown(key_listener);
       }
     });
   };

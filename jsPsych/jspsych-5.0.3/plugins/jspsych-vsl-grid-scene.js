@@ -51,7 +51,7 @@ jsPsych.plugins['vsl-grid-scene'] = (function() {
     var ncols = pattern[0].length;
 
     // create blank element to hold code that we generate
-    $('body').append($('<div>', {
+    jQuery('body').append(jQuery('<div>', {
       id: 'jspsych-vsl-grid-scene-dummy',
       css: {
         display: 'none'
@@ -59,7 +59,7 @@ jsPsych.plugins['vsl-grid-scene'] = (function() {
     }));
 
     // create table
-    $('#jspsych-vsl-grid-scene-dummy').append($('<table>', {
+    jQuery('#jspsych-vsl-grid-scene-dummy').append(jQuery('<table>', {
       id: 'jspsych-vsl-grid-scene-table',
       css: {
         'border-collapse': 'collapse',
@@ -69,21 +69,21 @@ jsPsych.plugins['vsl-grid-scene'] = (function() {
     }));
 
     for (var row = 0; row < nrows; row++) {
-      $("#jspsych-vsl-grid-scene-table").append($('<tr>', {
+      jQuery("#jspsych-vsl-grid-scene-table").append(jQuery('<tr>', {
         id: 'jspsych-vsl-grid-scene-table-row-' + row,
         css: {
           height: image_size[1] + "px"
         }
       }));
       for (var col = 0; col < ncols; col++) {
-        $("#jspsych-vsl-grid-scene-table-row-" + row).append($('<td>', {
+        jQuery("#jspsych-vsl-grid-scene-table-row-" + row).append(jQuery('<td>', {
           id: 'jspsych-vsl-grid-scene-table-' + row + '-' + col,
           css: {
             padding: image_size[1] / 10 + "px " + image_size[0] / 10 + "px",
             border: '1px solid #555'
           }
         }));
-        $('#jspsych-vsl-grid-scene-table-' + row + '-' + col).append($('<div>', {
+        jQuery('#jspsych-vsl-grid-scene-table-' + row + '-' + col).append(jQuery('<div>', {
           id: 'jspsych-vsl-grid-scene-table-cell-' + row + '-' + col,
           css: {
             width: image_size[0] + "px",
@@ -97,7 +97,7 @@ jsPsych.plugins['vsl-grid-scene'] = (function() {
     for (var row = 0; row < nrows; row++) {
       for (var col = 0; col < ncols; col++) {
         if (pattern[row][col] !== 0) {
-          $('#jspsych-vsl-grid-scene-table-cell-' + row + '-' + col).append($('<img>', {
+          jQuery('#jspsych-vsl-grid-scene-table-cell-' + row + '-' + col).append(jQuery('<img>', {
             src: pattern[row][col],
             css: {
               width: image_size[0] + "px",
@@ -108,8 +108,8 @@ jsPsych.plugins['vsl-grid-scene'] = (function() {
       }
     }
 
-    var html_out = $('#jspsych-vsl-grid-scene-dummy').html();
-    $('#jspsych-vsl-grid-scene-dummy').remove();
+    var html_out = jQuery('#jspsych-vsl-grid-scene-dummy').html();
+    jQuery('#jspsych-vsl-grid-scene-dummy').remove();
 
     return html_out;
 

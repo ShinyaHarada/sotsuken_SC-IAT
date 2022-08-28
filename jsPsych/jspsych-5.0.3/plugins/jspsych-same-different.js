@@ -38,12 +38,12 @@ jsPsych.plugins['same-different'] = (function() {
 
     // show image
     if (!trial.is_html) {
-      display_element.append($('<img>', {
+      display_element.append(jQuery('<img>', {
         src: trial.stimuli[0],
         "class": 'jspsych-same-different-stimulus'
       }));
     } else {
-      display_element.append($('<div>', {
+      display_element.append(jQuery('<div>', {
         html: trial.stimuli[0],
         "class": 'jspsych-same-different-stimulus'
       }));
@@ -63,7 +63,7 @@ jsPsych.plugins['same-different'] = (function() {
     }
 
     function showBlankScreen() {
-      $('.jspsych-same-different-stimulus').remove();
+      jQuery('.jspsych-same-different-stimulus').remove();
 
       setTimeoutHandlers.push(setTimeout(function() {
         showSecondStim();
@@ -72,13 +72,13 @@ jsPsych.plugins['same-different'] = (function() {
 
     function showSecondStim() {
       if (!trial.is_html) {
-        display_element.append($('<img>', {
+        display_element.append(jQuery('<img>', {
           src: trial.stimuli[1],
           "class": 'jspsych-same-different-stimulus',
           id: 'jspsych-same-different-second-stimulus'
         }));
       } else {
-        display_element.append($('<div>', {
+        display_element.append(jQuery('<div>', {
           html: trial.stimuli[1],
           "class": 'jspsych-same-different-stimulus',
           id: 'jspsych-same-different-second-stimulus'
@@ -87,7 +87,7 @@ jsPsych.plugins['same-different'] = (function() {
 
       if (trial.timing_second_stim > 0) {
         setTimeoutHandlers.push(setTimeout(function() {
-          $("#jspsych-same-different-second-stimulus").css('visibility', 'hidden');
+          jQuery("#jspsych-same-different-second-stimulus").css('visibility', 'hidden');
         }, trial.timing_second_stim));
       }
 

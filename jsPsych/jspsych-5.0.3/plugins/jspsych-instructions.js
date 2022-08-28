@@ -52,13 +52,13 @@ jsPsych.plugins.instructions = (function () {
         display_element.append(nav_html);
 
         if (current_page != 0 && trial.allow_backward) {
-          $("#jspsych-instructions-back").on("click", function () {
+          jQuery("#jspsych-instructions-back").on("click", function () {
             clear_button_handlers();
             back();
           });
         }
 
-        $("#jspsych-instructions-next").on("click", function () {
+        jQuery("#jspsych-instructions-next").on("click", function () {
           clear_button_handlers();
           next();
         });
@@ -66,8 +66,8 @@ jsPsych.plugins.instructions = (function () {
     }
 
     function clear_button_handlers() {
-      $("#jspsych-instructions-next").off("click");
-      $("#jspsych-instructions-back").off("click");
+      jQuery("#jspsych-instructions-next").off("click");
+      jQuery("#jspsych-instructions-back").off("click");
     }
 
     function next() {

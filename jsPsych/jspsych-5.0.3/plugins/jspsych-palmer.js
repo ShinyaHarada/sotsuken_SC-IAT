@@ -44,7 +44,7 @@ jsPsych.plugins.palmer = (function() {
 
     var size = trial.grid_spacing * (trial.square_size + 1);
 
-    display_element.append($("<svg id='jspsych-palmer-snapCanvas' width='" + size + "' height='" + size + "'></svg>"));
+    display_element.append(jQuery("<svg id='jspsych-palmer-snapCanvas' width='" + size + "' height='" + size + "'></svg>"));
 
     var paper = Snap("#jspsych-palmer-snapCanvas");
 
@@ -197,14 +197,14 @@ jsPsych.plugins.palmer = (function() {
     // start recording the time
     var startTime = (new Date()).getTime();
 
-    display_element.append($('<button id="jspsych-palmer-submitButton" class="jspsych-btn" type="button">Submit Answer</button>'));
-    $('#jspsych-palmer-submitButton').click(function() {
+    display_element.append(jQuery('<button id="jspsych-palmer-submitButton" class="jspsych-btn" type="button">Submit Answer</button>'));
+    jQuery('#jspsych-palmer-submitButton').click(function() {
       save_data();
     });
 
     if (trial.prompt !== "") {
-      display_element.append($('<div id="jspsych-palmer-prompt">'));
-      $("#jspsych-palmer-prompt").html(trial.prompt);
+      display_element.append(jQuery('<div id="jspsych-palmer-prompt">'));
+      jQuery("#jspsych-palmer-prompt").html(trial.prompt);
     }
 
     function arrayDifferences(arr1, arr2) {
@@ -241,8 +241,8 @@ jsPsych.plugins.palmer = (function() {
 
       if (trial.show_feedback) {
         // hide the button
-        $('#jspsych-palmer-submitButton').hide();
-        $('#jspsych-palmer-prompt').hide();
+        jQuery('#jspsych-palmer-submitButton').hide();
+        jQuery('#jspsych-palmer-prompt').hide();
 
         showConfiguration(trial.configuration);
         var feedback = "";
@@ -255,7 +255,7 @@ jsPsych.plugins.palmer = (function() {
             feedback = "You missed 1 line. The correct symbol is shown above.";
           }
         }
-        display_element.append($.parseHTML("<p id='jspsych-palmer-feedback'>" + feedback + "</p>"));
+        display_element.append(jQuery.parseHTML("<p id='jspsych-palmer-feedback'>" + feedback + "</p>"));
 
         setTimeout(function() {
           next_trial();
@@ -286,9 +286,9 @@ jsPsych.plugins.palmer = (function() {
     var size = grid_spacing * (square_size + 1);
 
     // create a div to hold the generated svg object
-    var stim_div = $('body').append($('<div id="jspsych-palmer-container">'));
+    var stim_div = jQuery('body').append(jQuery('<div id="jspsych-palmer-container">'));
 
-    $('#jspsych-palmer-container').append('<svg id="jspsych-palmer-temp-stim" width="' + size + '" height="' + size + '"></svg>');
+    jQuery('#jspsych-palmer-container').append('<svg id="jspsych-palmer-temp-stim" width="' + size + '" height="' + size + '"></svg>');
 
     // create the snap object
     var paper = Snap("#jspsych-palmer-temp-stim");
@@ -380,9 +380,9 @@ jsPsych.plugins.palmer = (function() {
     }
 
 
-    var svg = $("#jspsych-palmer-container").html();
+    var svg = jQuery("#jspsych-palmer-container").html();
 
-    $('#jspsych-palmer-container').remove();
+    jQuery('#jspsych-palmer-container').remove();
 
     return svg;
   };
