@@ -35,10 +35,10 @@ var jsPsych = (function () {
     current_trial = {};
 
     // check if there is a body element on the page
-    var default_display_element = $("body");
-    if (default_display_element.length === 0) {
-      $(document.documentElement).append($("<body>"));
-      default_display_element = $("body");
+    var default_display_element = document.querySelector('body');
+    if (default_display_element === null) {
+      document.documentElement.appendChild(document.createElement('body'));
+      default_display_element = document.querySelector('body');
     }
 
     var defaults = {
