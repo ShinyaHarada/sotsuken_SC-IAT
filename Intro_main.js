@@ -21,7 +21,7 @@ let personVerified=false
 //var length=person.length //入力された文字数を返す
 
 if (person.length===5){
-    if(person.match(/^\d+jQuery/)){
+    if(person.match(/^\d+$/)){
         personVerified=true
     }		
 }
@@ -35,7 +35,7 @@ while(!personVerified){
     if(person==null){
         alert("実験を続けるなら、リロード(Windows；Ctrl+R、Mac；Command+R)をしてからもう一度入力してください。")
     } else if (person.length==5){
-        if(person.match(/^\d+jQuery/)){
+        if(person.match(/^\d+$/)){
             personVerified=true
         }		
     } 
