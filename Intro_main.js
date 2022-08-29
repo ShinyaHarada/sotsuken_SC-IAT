@@ -12,7 +12,7 @@ var inductive_text = {
 var person = prompt("あなたに付与されたIDを半角数字で入力してください。", "");
 
 if (person == null){
-    alert("実験を続けるなら、リロード(Windows；Ctrl+R、Mac；Command+R)をしてからもう一度入力してください。")
+    alert("実験を続けるなら、リロード(Windows; Ctrl+R、Mac; Command+R)をしてからもう一度入力してください。")
 } 
 
 
@@ -33,7 +33,7 @@ while(!personVerified){
     person = prompt("入力に誤りがあります。あなたに付与されたIDを半角数字で入力してください。", "");
     console.log(person);
     if(person==null){
-        alert("実験を続けるなら、リロード(Windows；Ctrl+R、Mac；Command+R)をしてからもう一度入力してください。")
+        alert("実験を続けるなら、リロード(Windows; Ctrl+R、Mac; Command+R)をしてからもう一度入力してください。")
     } else if (person.length==5){
         if(person.match(/^\d+$/)){
             personVerified=true
