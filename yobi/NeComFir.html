@@ -332,7 +332,9 @@
 		,timeline: timeline
 		,on_finish: function()
 		{
-			window.location.replace("https://nagoyapsychology.qualtrics.com/jfe/form/SV_5A3pSHCxsGaErFY?Q_PopulateResponse={%22QID2%22:%22"+urlvar.subject+"%22}");//ここもクアルトリクスにする
+			window.location.replace("https://nagoyapsychology.qualtrics.com/jfe/form/SV_5A3pSHCxsGaErFY?ID="+urlvar.subject+"")
+		//			Q_PopulateResponse={%22QID2%22:%22"+urlvar.subject+"%22}");//ここもクアルトリクスにする
+
 		}
 	});
 	}
