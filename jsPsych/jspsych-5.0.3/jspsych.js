@@ -520,7 +520,7 @@ var jsPsych = (function () {
         go();
       } else {
         DOM_target.append(
-          '<div style=""><p>下のボタンをクリックすると、今回の実験の説明と実施方法が表示されます。</p><button id="jspsych-fullscreen-btn" class="jspsych-btn">表示される文章を読む</button></div>'
+          '<div style=""><p><big>下のボタンをクリックすると最大画面となり、今回の実験の説明と実施方法が表示されます。</big></p><button id="jspsych-fullscreen-btn" class="jspsych-btn">次へ &gt;</button></div>'
         );
         jQuery("#jspsych-fullscreen-btn").on("click", function () {
           var element = document.documentElement;
