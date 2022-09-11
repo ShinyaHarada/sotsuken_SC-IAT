@@ -20,15 +20,15 @@
 			var inductive_text = {
 				type: 'instructions',
 				pages: [
-				'<big><big><b>本課題の概要</b></big></big><br></br>'
-				+ '<big>この課題では、精神疾患のある人に対してどのようなイメージが保持されているかについて調べることを目的としています。 </big><br></br>'
-				+ '<big>本課題を実施していただけるようでしたら、下のボタンを押して次に進んでください。</big><br></br>'
+				'<big><big><b>本実験の概要</b></big></big><br></br>'
+				+ '<big>この実験では、精神疾患のある人に対してどのようなイメージが保持されているかについて調べることを目的としています。 </big><br></br>'
+				+ '<big>本実験を実施していただけるようでしたら、下のボタンを押して次に進んでください。</big><br></br>'
 	
 				],
 				show_clickable_nav: true
 			};
 			
-			var person = prompt("あなたに付与されたIDを半角数字で入力してください。", "");
+			var person = prompt("先ほど控えていただいたID番号を半角数字で入力してください。", "");
 	
 			if (person == null){
 				alert("実験を続けるなら、リロード(Windows; Ctrl+R、Mac; Command+R)をしてからもう一度入力してください。")
@@ -50,7 +50,7 @@
 			//入力された文字数が5ならtrueを返す
 			
 			while(!personVerified){
-				person = prompt("入力に誤りがあります。あなたに付与されたIDを半角数字で入力してください。", "");
+				person = prompt("入力に誤りがあります。先ほど控えていただいたID番号を半角数字で入力してください。", "");
 				console.log(person);
 				if(person==null){
 					alert("実験を続けるなら、リロード(Windows; Ctrl+R、Mac; Command+R)をしてからもう一度入力してください。")
