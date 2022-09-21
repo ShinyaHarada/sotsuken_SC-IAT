@@ -103,8 +103,7 @@
 				jQuery('div.right-side').empty();
 			}
 	};
-	
-	
+		
 	
 	/* ============IMAGE AND WORDS FOR BLOCKS===============*/
 	
@@ -262,7 +261,7 @@
 	/* ====================CREATE EXPERIMENT TIMELINE AND START IT================= */
 	
 	jsPsych.data.addProperties({
-		subject: urlvar.subject
+		subject: urlvar.qid
 	});
 	
 	/* create experiment timeline array */
@@ -286,7 +285,7 @@
 		var URL = "https://script.google.com/macros/s/AKfycbwOTmpqO02unbJ5yZCUmyI7GJpsv8JM1-sP8_KTzgMsb4ZD0TYv56RlPtpEvjbyZxGBSg/exec";
 
 		var SendDATA = {
-			"subject" : urlvar.subject,
+			"subject" : urlvar.qid,
 			"csvText": filedata,
 			"dataType" : "saveData",
 			"day": 2
@@ -332,7 +331,7 @@
 		,timeline: timeline
 		,on_finish: function()
 		{
-			window.location.replace("https://nagoyapsychology.qualtrics.com/jfe/form/SV_b48lgsBoervsxTw?ID="+urlvar.subject+"")
+			window.location.replace("https://nagoyapsychology.qualtrics.com/jfe/form/SV_b48lgsBoervsxTw?ID="+urlvar.qid)
 		}
 	});
 	}
