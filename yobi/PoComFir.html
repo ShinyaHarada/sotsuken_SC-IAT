@@ -112,7 +112,7 @@
 		{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">うつ病</p>', is_html:true, key_answer: 70}
 		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">不安障害</p>', is_html:true, key_answer: 70}
 		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">統合失調症</p>', is_html:true, key_answer: 70}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">不安症</p>', is_html:true, key_answer: 70}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">依存症</p>', is_html:true, key_answer: 70}
 	];
 	var im1 = jsPsych.randomization.sample(images_and_words1,7,true);
 	
@@ -140,7 +140,7 @@
 		{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">うつ病</p>', is_html:true, key_answer: 74}
 		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">不安障害</p>', is_html:true, key_answer: 74}
 		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">統合失調症</p>', is_html:true, key_answer: 74}
-		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">不安症</p>', is_html:true, key_answer: 74}
+		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">依存症</p>', is_html:true, key_answer: 74}
 	];
 	
 	var im4 = jsPsych.randomization.sample(images_and_words4,7,true);
@@ -281,7 +281,7 @@
 	/* write to server */
 	function saveData(filedata)
 	{
-		var URL = "https://script.google.com/macros/s/AKfycbxnrZyiBKmofZOCKs5gd_91lZnmMt41CxNG54XQ16J5WnSTSY6XMImP1ybdp3D7ba-6IA/exec";
+		var URL = "https://script.google.com/macros/s/AKfycbwIkE3smP9Hm7DULKh8qRTiJnNSNOORFxBpSAry2YTjYECodwGnrTJRp77HS2z5u5SU_Q/exec";
 
 		var SendDATA = {
 			"subject" : urlvar.subject,
