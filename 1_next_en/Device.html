@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+	<title>Device Check</title>
+	<script src="../jsPsych/js/jspsych.js"></script>
+	<script src="../jsPsych/js/plugins/jspsych-html-keyboard-response.js"></script>
+	<script src="../jsPsych/js/plugins/jspsych-iat-html.js"></script>
+	<script src="../jsPsych/js/plugins/jspsych-survey-text.js"></script>
+	<script src="../jsPsych/js/plugins/jspsych-call-function.js"></script>
+	<script src="../jsPsych/js/plugins/jspsych-instructions.js"></script>
+	<script src="../jsPsych/js/plugins/jspsych-keen-ping.js"></script>
+
+	<script src="js/keenio-credentials.js"></script>
+	<link href="css/jspsych.css" rel="stylesheet" type="text/css"></link>	
+	</head>
+	
+	
+	<script>
+    var id=jsPsych.data.getURLVariable("qid")
+
+	var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+	};
+	if(isMobile.any()|| (navigator.userAgent.match('Macintosh')&& 'ontouchend' in document)) {
+   alert("このURLにはキーボードのあるパソコンでアクセスしてください。");
+	} else {window.location.replace("https://shinyaharada.github.io/sotsuken_SC-IAT/1_next_en/Intro.html?qid="+id)
+    }
+	
+	
+	</script>
+</html>
+

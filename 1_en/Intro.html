@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+    <head>
+	<title>Ethics</title>
+	<script src="../jsPsych/js/jspsych.js"></script>
+	<script src="../jsPsych/js/plugins/jspsych-html-keyboard-response.js"></script>
+	<script src="../jsPsych/js/plugins/jspsych-iat-html.js"></script>
+	<script src="../jsPsych/js/plugins/jspsych-survey-text.js"></script>
+	<script src="../jsPsych/js/plugins/jspsych-call-function.js"></script>
+	<script src="../jsPsych/js/plugins/jspsych-instructions.js"></script>
+	<script src="../jsPsych/js/plugins/jspsych-keen-ping.js"></script>
+
+	<script src="js/keenio-credentials.js"></script>
+	<link href="css/jspsych.css" rel="stylesheet" type="text/css"></link>	
+	</head>
+	
+	
+	<script>
+		var id=jsPsych.data.getURLVariable("qid")
+		function intro(){
+			var inductive_text = {
+				type: 'instructions',
+				pages: [
+				'<big><big><b>本実験の概要</b></big></big><br></br>'
+				+ '<big>この実験では、精神疾患のある人に対してどのようなイメージが保持されているかについて調べることを目的としています。 </big><br></br>'
+				+ '<big>本実験を実施していただけるようでしたら、下のボタンを押して次に進んでください。</big><br></br>'
+	
+				],
+				show_clickable_nav: true
+			};
+			
+			/*var person = prompt("先ほど控えていただいたID番号を半角数字で入力してください。", "");
+	
+			if (person == null){
+				alert("実験を続けるなら、リロード(Windows; Ctrl+R、Mac; Command+R)をしてからもう一度入力してください。")
+				return 
+			} 
+	
+	
+			let personVerified=false
+	
+			//var length=person.length //入力された文字数を返す
+			
+			if (person.length===5){
+				if(person.match(/^\d+$/)){
+					personVerified=true
+				}		
+			}
+			
+	
+			//入力された文字数が5ならtrueを返す
+			
+			while(!personVerified){
+				person = prompt("入力に誤りがあります。先ほど控えていただいたID番号を半角数字で入力してください。", "");
+				console.log(person);
+				if(person==null){
+					alert("実験を続けるなら、リロード(Windows; Ctrl+R、Mac; Command+R)をしてからもう一度入力してください。")
+					return
+				} else if (person.length==5){
+					if(person.match(/^\d+$/)){
+						personVerified=true
+					}		
+				} 
+			}*/
+			
+	
+			/*if (person == "") {
+				var person = Math.floor(Math.random() * 1000) + 1  //idの管理
+				}
+			if (person == null) {
+				var person = Math.floor(Math.random() * 1000) + 1
+				}*/
+				
+			var timeline = [];
+			timeline.push(inductive_text);
+			
+			var rand = Math.floor(Math.random() * 2) + 1
+			
+			if (rand == 1) {
+				var redirecter = "https://shinyaharada.github.io/sotsuken_SC-IAT/1_en/PoComFir.html?qid="+id
+				} else {
+				var redirecter = "https://shinyaharada.github.io/sotsuken_SC-IAT/1_en/NeComFir.html?qid="+id
+				}
+			
+			
+			
+			jsPsych.init({
+				timeline: timeline,
+				on_finish: function() {
+					window.location.replace(redirecter);
+				}
+			});
+		}
+	
+		intro();
+		</script>
+</html>
+
