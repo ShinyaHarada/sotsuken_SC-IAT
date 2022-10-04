@@ -261,7 +261,7 @@
 	/* ====================CREATE EXPERIMENT TIMELINE AND START IT================= */
 	
 	jsPsych.data.addProperties({
-		subject: urlvar.qid
+		subject: urlvar.id
 	});
 	
 	/* create experiment timeline array */
@@ -285,7 +285,7 @@
 		var URL = "https://script.google.com/macros/s/AKfycbwIkE3smP9Hm7DULKh8qRTiJnNSNOORFxBpSAry2YTjYECodwGnrTJRp77HS2z5u5SU_Q/exec";
 
 		var SendDATA = {
-			"subject" : urlvar.qid,
+			"subject" : urlvar.id,
 			"csvText": filedata,
 			"dataType" : "saveData",
 			"day": 1-1
@@ -331,7 +331,7 @@
 		,timeline: timeline
 		,on_finish: function()
 		{
-			window.location.replace("https://nagoyapsychology.qualtrics.com/jfe/form/SV_eE6JUHRjjxeaTzM?qid="+urlvar.qid)
+			window.location.replace("https://nagoyapsychology.qualtrics.com/jfe/form/SV_eE6JUHRjjxeaTzM?id="+urlvar.id)
 		}
 	});
 	}

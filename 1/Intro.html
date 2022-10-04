@@ -16,7 +16,7 @@
 	
 	
 	<script>
-		var id=jsPsych.data.getURLVariable("qid")
+		var id=jsPsych.data.getURLVariable("id")
 		function intro(){
 			var inductive_text = {
 				type: 'instructions',
@@ -77,9 +77,9 @@
 			var rand = Math.floor(Math.random() * 2) + 1
 			
 			if (rand == 1) {
-				var redirecter = "https://shinyaharada.github.io/sotsuken_SC-IAT/1/PoComFir.html?qid="+id
+				var redirecter = "https://shinyaharada.github.io/sotsuken_SC-IAT/1/PoComFir.html?id="+id
 				} else {
-				var redirecter = "https://shinyaharada.github.io/sotsuken_SC-IAT/1/NeComFir.html?qid="+id
+				var redirecter = "https://shinyaharada.github.io/sotsuken_SC-IAT/1/NeComFir.html?id="+id
 				}
 			
 			
