@@ -29,7 +29,6 @@
 	var urlvar = jsPsych.data.urlVariables();
 		
 	/* ===============INSTRUCTION BLOCKS==================*/
-	
 	var intro =
 	{
 		type:"text"
@@ -103,7 +102,7 @@
 				jQuery('div.right-side').empty();
 			}
 	};
-		
+	
 	
 	/* ============IMAGE AND WORDS FOR BLOCKS===============*/
 	
@@ -144,6 +143,7 @@
 		,{stimulus: '<p class="IAT-stimuli"; style="font-size: 35px">依存症</p>', is_html:true, key_answer: 74}
 	];
 	
+	
 	var im4 = jsPsych.randomization.sample(images_and_words4,7,true);
 	var im5 = jsPsych.randomization.sample(images_and_words2,10,true);
 	var im6 = jsPsych.randomization.sample(images_and_words3,7,true);
@@ -151,7 +151,7 @@
 	/* =============RANDOMIZATION OF STIMULI IN BLOCKS================== */
 	
 	/* practice trial stimuli randomization */
-
+	
 	var block1and2 = im1.concat(im2,im3);
 	var practice_trial_stimuli = jsPsych.randomization.repeat(block1and2,1);
 	//var practice_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
@@ -161,17 +161,14 @@
 	var full_trial_stimuli = jsPsych.randomization.repeat(block1and2,3);
 	//var full_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
 
-
 	/* reverse practice trial stimuli randomization */
 	var block3and4 = im4.concat(im5,im6);
 	var rev_practice_trial_stimuli = jsPsych.randomization.repeat(block3and4,1);
 	//var rev_practice_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
-
 	
 	/* reverse full trial stimuli randomization */
 	var rev_full_trial_stimuli = jsPsych.randomization.repeat(block3and4,3);
-	//var rev_full_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
-
+	//gitvar rev_full_trial_stimuli = jsPsych.randomization.repeat(im1,1);//最後にこの行を消す
 	 
 	
 	/* =================DEFINE BLOCKS================= */
@@ -268,27 +265,27 @@
 	var timeline = [];
 	timeline.push(intro)
 
-	timeline.push(instructions);
-	timeline.push(practice_trial);
-	timeline.push(instructions2);
-	timeline.push(full_trial);
 	timeline.push(rev_instructions);
 	timeline.push(rev_practice_trial);
 	timeline.push(instructions2);
 	timeline.push(rev_full_trial);
+	timeline.push(instructions);
+	timeline.push(practice_trial);
+	timeline.push(instructions2);
+	timeline.push(full_trial);
 	
 
 
 	/* write to server */
 	function saveData(filedata)
 	{
-		var URL = "https://script.google.com/macros/s/AKfycbwIkE3smP9Hm7DULKh8qRTiJnNSNOORFxBpSAry2YTjYECodwGnrTJRp77HS2z5u5SU_Q/exec";
+		var URL = "https://script.google.com/macros/s/AKfycbyVK-33BtBamS557nADy6kj4O4AkzX0AU9NcM9PJS5gke4DfOJyhu_E0LTUKdY1G3fk/exec";
 
 		var SendDATA = {
 			"subject" : urlvar.qid,
 			"csvText": filedata,
 			"dataType" : "saveData",
-			"day": 2
+			"day": urlvar.condition
 		};
 
 		var postparam =
@@ -331,7 +328,7 @@
 		,timeline: timeline
 		,on_finish: function()
 		{
-			window.location.replace("https://nagoyapsychology.qualtrics.com/jfe/form/SV_b48lgsBoervsxTw?qid="+urlvar.qid)
+			window.location.replace("https://nagoyapsychology.qualtrics.com/jfe/form/SV_0dEIBPaQd69cZLM?qid="+urlvar.qid+"&condition="+urlvar.condition)
 		}
 	});
 	}
