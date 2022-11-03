@@ -279,13 +279,13 @@
 	/* write to server */
 	function saveData(filedata)
 	{
-		var URL = "https://script.google.com/macros/s/AKfycbwIkE3smP9Hm7DULKh8qRTiJnNSNOORFxBpSAry2YTjYECodwGnrTJRp77HS2z5u5SU_Q/exec";
+		var URL = "https://script.google.com/macros/s/AKfycbzcRzKvERT-RcA49KB5W8f-4zOcitZgvmJfeq3IwX6fnfj0F6ovyLeae58YuKH_F9Mg/exec";
 
 		var SendDATA = {
 			"subject" : urlvar.qid,
 			"csvText": filedata,
 			"dataType" : "saveData",
-			"day": 2
+			"day": urlvar.condition
 		};
 
 		var postparam =
@@ -328,7 +328,7 @@
 		,timeline: timeline
 		,on_finish: function()
 		{
-			window.location.replace("https://nagoyapsychology.qualtrics.com/jfe/form/SV_b48lgsBoervsxTw?qid="+urlvar.qid)
+			window.location.replace("https://nagoyapsychology.qualtrics.com/jfe/form/SV_1He16eIMQn415Eq?qid="+urlvar.qid+"&condition="+urlvar.condition)
 		}
 	});
 	}
