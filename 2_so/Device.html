@@ -18,6 +18,7 @@
 	<script>
 	var qid=jsPsych.data.getURLVariable("qid")
     var condition=jsPsych.data.getURLVariable("condition")
+    var id=jsPsych.data.getURLVariable("id")
 
     var isMobile = {
     Android: function() {
@@ -41,7 +42,7 @@
 	};
 	if(isMobile.any()|| (navigator.userAgent.match('Macintosh')&& 'ontouchend' in document)) {
    alert("本実験はスマートフォンやタブレット端末での実施ができません。お手数をおかけしますが、キーボードのあるPCで再びアンケートURLをクリックしてください。");
-	} else {window.location.replace("https://shinyaharada.github.io/sotsuken_SC-IAT/2_so/Intro.html?qid="+qid+"&condition="+condition)
+	} else {window.location.replace("https://shinyaharada.github.io/sotsuken_SC-IAT/2_so/Intro.html?qid="+qid+"&condition="+condition+"&id="+id)
 }
 	
 	
