@@ -245,7 +245,9 @@
 		type: "text"
 		,data:{trial_name: 'debrief'}
         ,text:'<p class = "instructions">お疲れ様でした。'
-			+'<br></br>スペースバーを押して次のアンケートに取り組んでください。</p>'
+		//	+'<br></br>スペースバーを押して次のアンケートに取り組んでください。</p>'
+			+'<br></br>スペースバーを押して次のアンケートに取り組んでください。<br></br>（今は，名古屋大学のホームページに遷移します。）</p>'
+
 		,on_trial_start: function()
 			{
 				jQuery('div.left-side').empty();
@@ -316,7 +318,7 @@
 
     
 	/* save data and debrief */
-	timeline.push(save_data);
+	//timeline.push(save_data); #saveしないようコメントアウト
 	timeline.push(debrief);
 	
 	/* start the experiment */
@@ -331,7 +333,9 @@
 		,timeline: timeline
 		,on_finish: function()
 		{
-			window.location.replace("https://nagoyapsychology.qualtrics.com/jfe/form/SV_cMuxz3hkeohOJPE?qid="+urlvar.qid)
+			//window.location.replace("https://nagoyapsychology.qualtrics.com/jfe/form/SV_cMuxz3hkeohOJPE?qid="+urlvar.qid)
+			window.location.replace("https://www.nagoya-u.ac.jp/"+urlvar.qid)
+
 		}
 	});
 	}
